@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.6"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/Flamingo6-2"/>
+	<classpathentry kind="lib" path="/Users/marcos/Documents/Libs/Commons-codec-1.3/commons-codec-1.3.jar" sourcepath="/Users/marcos/Documents/Libs/Commons-codec-1.3/commons-codec-1.3-sources.jar">
+		<attributes>
+			<attribute name="javadoc_location" value="jar:file:/Users/marcos/Documents/Libs/Commons-codec-1.3/commons-codec-1.3-javadoc.jar!/"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/Users/marcos/Documents/Libs/Substance6.1/substance-6.1/substance-6.1.jar"/>
+	<classpathentry kind="lib" path="/Users/marcos/Documents/Libs/Towel-1.1/towel-v1.1.jar"/>
+	<classpathentry kind="lib" path="/Users/marcos/Documents/Libs/Trident1.2/trident-1.2.jar" sourcepath="/Users/marcos/Documents/Libs/Trident1.2/trident-1.2-sources.jar">
+		<attributes>
+			<attribute name="javadoc_location" value="jar:file:/Users/marcos/Documents/Libs/Trident1.2/trident-1.2-javadoc.jar!/"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/Users/marcos/Documents/Libs/japura-1.15.1/japura-1.15.1.jar"/>
+	<classpathentry kind="lib" path="/Users/marcos/Documents/Libs/Lib-H-P-M/lib/antlr-2.7.6.jar"/>
+	<classpathentry kind="lib" path="/Users/marcos/Documents/Libs/Lib-H-P-M/lib/asm-attrs.jar"/>
+	<classpathentry kind="lib" path="/Users/marcos/Documents/Libs/Lib-H-P-M/lib/asm.jar"/>
+	<classpathentry kind="lib" path="/Users/marcos/Documents/Libs/Lib-H-P-M/lib/cglib-2.1.3.jar"/>
+	<classpathentry kind="lib" path="/Users/marcos/Documents/Libs/Lib-H-P-M/lib/commons-collections-2.1.1.jar"/>
+	<classpathentry kind="lib" path="/Users/marcos/Documents/Libs/Lib-H-P-M/lib/commons-collections-3.1.jar"/>
+	<classpathentry kind="lib" path="/Users/marcos/Documents/Libs/Lib-H-P-M/lib/commons-fileupload-1.2.2.jar"/>
+	<classpathentry kind="lib" path="/Users/marcos/Documents/Libs/Lib-H-P-M/lib/commons-io-2.0.1.jar"/>
+	<classpathentry kind="lib" path="/Users/marcos/Documents/Libs/Lib-H-P-M/lib/commons-logging-1.1.jar"/>
+	<classpathentry kind="lib" path="/Users/marcos/Documents/Libs/Lib-H-P-M/lib/dom4j-1.6.1.jar"/>
+	<classpathentry kind="lib" path="/Users/marcos/Documents/Libs/Lib-H-P-M/lib/ehcache-1.2.3.jar"/>
+	<classpathentry kind="lib" path="/Users/marcos/Documents/Libs/Lib-H-P-M/lib/ejb3-persistence.jar"/>
+	<classpathentry kind="lib" path="/Users/marcos/Documents/Libs/Lib-H-P-M/lib/hibernate-annotations.jar"/>
+	<classpathentry kind="lib" path="/Users/marcos/Documents/Libs/Lib-H-P-M/lib/hibernate-commons-annotations.jar"/>
+	<classpathentry kind="lib" path="/Users/marcos/Documents/Libs/Lib-H-P-M/lib/hibernate-entitymanager.jar"/>
+	<classpathentry kind="lib" path="/Users/marcos/Documents/Libs/Lib-H-P-M/lib/hibernate-testing.jar"/>
+	<classpathentry kind="lib" path="/Users/marcos/Documents/Libs/Lib-H-P-M/lib/hibernate-tools.jar"/>
+	<classpathentry kind="lib" path="/Users/marcos/Documents/Libs/Lib-H-P-M/lib/hibernate3.jar"/>
+	<classpathentry kind="lib" path="/Users/marcos/Documents/Libs/Lib-H-P-M/lib/javassist-3.9.0.GA.jar"/>
+	<classpathentry kind="lib" path="/Users/marcos/Documents/Libs/Lib-H-P-M/lib/javassist.jar"/>
+	<classpathentry kind="lib" path="/Users/marcos/Documents/Libs/Lib-H-P-M/lib/jdbc2_0-stdext.jar"/>
+	<classpathentry kind="lib" path="/Users/marcos/Documents/Libs/Lib-H-P-M/lib/jstl.jar"/>
+	<classpathentry kind="lib" path="/Users/marcos/Documents/Libs/Lib-H-P-M/lib/jta-1.1.jar"/>
+	<classpathentry kind="lib" path="/Users/marcos/Documents/Libs/Lib-H-P-M/lib/jta.jar"/>
+	<classpathentry kind="lib" path="/Users/marcos/Documents/Libs/Lib-H-P-M/lib/mysql-connector-java-5.1.6-bin.jar"/>
+	<classpathentry kind="lib" path="/Users/marcos/Documents/Libs/Lib-H-P-M/lib/slf4j-api-1.5.8.jar"/>
+	<classpathentry kind="lib" path="/Users/marcos/Documents/Libs/Lib-H-P-M/lib/standard.jar"/>
+	<classpathentry kind="lib" path="/Users/marcos/Documents/Libs/jcalendar-1/lib/jcalendar-1.4.jar"/>
+	<classpathentry kind="lib" path="/Users/marcos/Documents/Libs/jcalendar-1/lib/jgoodies-common-1.2.0.jar"/>
+	<classpathentry kind="lib" path="/Users/marcos/Documents/Libs/jcalendar-1/lib/jgoodies-looks-2.4.1.jar"/>
+	<classpathentry kind="lib" path="/Users/marcos/Documents/Libs/jcalendar-1/lib/junit-4.6.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>
