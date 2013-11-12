@@ -1,4 +1,8 @@
 eclipse.preferences.version=1
+encoding//src/br/com/pcsocial/gestao/controle/ValidarLoginControle.java=UTF-8
 encoding//src/br/com/pcsocial/gestao/modelo/Pessoa.java=UTF-8
 encoding//src/br/com/pcsocial/gestao/visao/PrincipalClienteRibbonUI.java=UTF-8
 encoding//src/br/com/pcsocial/gestao/visao/ValidarLoginUI.java=UTF-8
+encoding//src/br/com/pcsocial/gestao/visao/base/ManterBaseUI.java=UTF-8
+encoding//src/br/com/pcsocial/gestao/visao/grid/ManterPessoaUI.java=UTF-8
+encoding//src/br/com/pcsocial/gestao/visao/manter/AdicionarPessoaUI.java=UTF-8

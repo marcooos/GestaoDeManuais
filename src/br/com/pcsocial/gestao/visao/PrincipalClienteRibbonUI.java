@@ -31,33 +31,22 @@ import org.pushingpixels.flamingo.api.ribbon.resize.CoreRibbonResizePolicies;
 import org.pushingpixels.flamingo.api.ribbon.resize.IconRibbonBandResizePolicy;
 import org.pushingpixels.flamingo.api.ribbon.resize.RibbonBandResizePolicy;
 
-/*import br.com.pcsocial.cliente.visao.analise.OcupacaoRestUI;
-import br.com.pcsocial.cliente.visao.analise.OcupacaoSegUI;
-import br.com.pcsocial.cliente.visao.analise.TempoDePermanenciaUI;
-import br.com.pcsocial.cliente.visao.grid.ManterCanaisUI;
-import br.com.pcsocial.cliente.visao.grid.ManterClassesUI;
-import br.com.pcsocial.cliente.visao.grid.ManterDemandaUI;
-import br.com.pcsocial.cliente.visao.grid.ManterEmpresaUI;
-import br.com.pcsocial.cliente.visao.grid.ManterMercadoUI;
-import br.com.pcsocial.cliente.visao.grid.ManterPessoaUI;
-import br.com.pcsocial.cliente.visao.grid.ManterReceitaUI;
-import br.com.pcsocial.cliente.visao.grid.ManterRestricoesUI;
-import br.com.pcsocial.cliente.visao.grid.ManterTarifaUI;
-import br.com.pcsocial.cliente.visao.grid.ManterTemporadaUI;
-import br.com.pcsocial.cliente.visao.grid.ManterTiposApartamentoUI;*/
 
 public class PrincipalClienteRibbonUI extends JFrame {
 	private static final long serialVersionUID = 1L;
 	private DecoratedDesktopPane desktop;
-	private JCommandButton cbHoteis, cbTiposAptos, cbPessoa, cbSegMercado,
-			cbTarifas, cbClassesTar, cbRestricoesTar, cbCanais, cbDemandas,
-			cbOrigem, cbTemporadas, cbTemp, cbTempPerm, cbOcupSeg, cbPricing,
-			cbOcupRest, cbOver, cbRentSeg, cbConsSeg, cbEstadiaMed, cdPreviDem;
+	private JCommandButton cbOcorrencia, cbTiposDocumentos, cbPessoa, cbPermissoes,
+			cbMaquinas,cbIndices,cbIndice, cbBuscarDocumentos, cbTemp; 
+			/*cbClassesTar, cbRestricoesTar, cbCanais, cbDemandas,
+			cbOrigem, cbIndice, cbOcupSeg, cbPricing,
+			cbOcupRest, cbOver, cbRentSeg, cbConsSeg, cbEstadiaMed, cdPreviDem;*/
 	private JRibbon menuRibbon;
-	private JRibbonBand menuCadastroHoteis, menuCadastroTarifas,
-			menuCadastroPessoas, menuAnalise, menuRelatorios, menuParametros,
+	private JRibbonBand menuCadastroDocumento, menuCadastroEquipamentos,
+			menuCadastroPessoas, menuAnalise, 
+			//menuAnalise, menuParametros,
 			menuAjuda;
-	private RibbonTask tsCadastro, tsAnalise, tsRelatorios, tsParametros,
+	private RibbonTask tsCadastro, tsAnalise, 
+			//tsAnalise, tsParametros,
 			tsAjuda;
 	private JMenuBar menu;
 	private JMenuItem menuItem;
@@ -108,31 +97,31 @@ public class PrincipalClienteRibbonUI extends JFrame {
 
 		// Criar Abas
 		menuRibbon = new JRibbon();
-		menuCadastroHoteis = new JRibbonBand("Hotéis", null);
-		menuCadastroTarifas = new JRibbonBand("Tarifas", null);
 		menuCadastroPessoas = new JRibbonBand("Pessoas", null);
-		menuAnalise = new JRibbonBand("Gráficos e indicadores", null);
-		menuRelatorios = new JRibbonBand("", null);
-		menuParametros = new JRibbonBand("", null);
+		menuCadastroEquipamentos = new JRibbonBand("Equipamentos", null);
+		menuCadastroDocumento = new JRibbonBand("Documentos", null);				
+		//menuAnalise = new JRibbonBand("Busca de documentos", null);
+		menuAnalise = new JRibbonBand("Falhas", null);
+		//menuParametros = new JRibbonBand("", null);
 		menuAjuda = new JRibbonBand("", null);
 
 		// Botoes menu cadastro
-		cbHoteis = new JCommandButton(
-				"Hotéis",
-				getResizableIconFromResource("/gui/icones/barras/hoteis.png"));
-		cbTiposAptos = new JCommandButton(
-				"Tipos de apartamento",
-				getResizableIconFromResource("/gui/icones/barras/apartamento.png"));
+		cbOcorrencia = new JCommandButton(
+				"Ocorrências",
+				getResizableIconFromResource("/gui/icones/barras/mercado.png"));
+		cbTiposDocumentos = new JCommandButton(
+				"Documentos",
+				getResizableIconFromResource("/gui/icones/barras/demandas.png"));
 		cbPessoa = new JCommandButton(
 				"Pessoas",
 				getResizableIconFromResource("/gui/icones/barras/pessoas.png"));
-		cbSegMercado = new JCommandButton(
-				"Seg. de mercado",
-				getResizableIconFromResource("/gui/icones/barras/mercado.png"));
-		cbTarifas = new JCommandButton(
-				"Tarifas",
-				getResizableIconFromResource("/gui/icones/barras/tarifas.png"));
-		cbClassesTar = new JCommandButton(
+		cbPermissoes = new JCommandButton(
+				"Permissões",
+				getResizableIconFromResource("/gui/icones/barras/restricoes.png"));
+		cbMaquinas = new JCommandButton(
+				"Maquinas",
+				getResizableIconFromResource("/gui/icones/barras/over.png"));
+		/*cbClassesTar = new JCommandButton(
 				"Clas. de tarifas",
 				getResizableIconFromResource("/gui/icones/menu/classes.png"));
 		cbRestricoesTar = new JCommandButton(
@@ -146,115 +135,65 @@ public class PrincipalClienteRibbonUI extends JFrame {
 				getResizableIconFromResource("/gui/icones/menu/demandas.png"));
 		cbOrigem = new JCommandButton(
 				"Origem de receitas hospedagens",
-				getResizableIconFromResource("/gui/icones/menu/receitas.png"));
-		cbTemporadas = new JCommandButton(
+				getResizableIconFromResource("/gui/icones/menu/receitas.png"));*/
+		cbIndices = new JCommandButton(
 				"Temporadas",
 				getResizableIconFromResource("/gui/icones/barras/temporadas.png"));
+		
+		cbIndice = new JCommandButton(
+				"Indices",
+				getResizableIconFromResource("/gui/icones/barras/tempoPerm.png"));
+		
 		// Temp
 		cbTemp = new JCommandButton("Temp");
 
-		// Botoes do menu An�lise
-		cbTempPerm = new JCommandButton(
-				"Tempo de permandência",
-				getResizableIconFromResource("/gui/icones/barras/tempoPerm.png"));
-		cbOcupSeg = new JCommandButton(
-				"Ocupação por segmento",
-				getResizableIconFromResource("/gui/icones/barras/ocupSeg.png"));
-		cbPricing = new JCommandButton(
-				"Princing",
-				getResizableIconFromResource("/gui/icones/barras/pricing.png"));
-		cbOcupRest = new JCommandButton(
-				"Ocupação por restrições de tarifas",
-				getResizableIconFromResource("/gui/icones/barras/restricoes.png"));
-		cbOver = new JCommandButton(
-				"Overbooking",
-				getResizableIconFromResource("/gui/icones/barras/over.png"));
-		cbRentSeg = new JCommandButton(
-				"Rentabilidade por seguimento",
-				getResizableIconFromResource("/gui/icones/barras/rentabilidade.png"));
-		cbConsSeg = new JCommandButton(
-				"Consumo por seguimento",
-				getResizableIconFromResource("/gui/icones/barras/consumo.png"));
-		cbEstadiaMed = new JCommandButton(
-				"Estadia média por segmento",
-				getResizableIconFromResource("/gui/icones/barras/estadia.png"));
-		cdPreviDem = new JCommandButton(
-				"Previsão de demandas flutuantes",
-				getResizableIconFromResource("/gui/icones/barras/demandas.png"));
-		
-		
+		// Botoes do menu Análise
+		cbBuscarDocumentos = new JCommandButton(
+				"Buscar documentos",
+				getResizableIconFromResource("/gui/icones/barras/ocupSeg.png"));	
 		
 		// Eventos botoes
-		cbHoteis.addActionListener(al);
-		cbTiposAptos.addActionListener(al);
+		cbOcorrencia.addActionListener(al);
+		cbTiposDocumentos.addActionListener(al);
 		cbPessoa.addActionListener(al);
-		cbSegMercado.addActionListener(al);
-		cbTarifas.addActionListener(al);
-		cbClassesTar.addActionListener(al);
-		cbRestricoesTar.addActionListener(al);
-		cbCanais.addActionListener(al);
-		cbDemandas.addActionListener(al);
-		cbOrigem.addActionListener(al);
-		cbTemporadas.addActionListener(al);
-		
-		cbTempPerm.addActionListener(al);
-		cbOcupSeg.addActionListener(al);
-		cbOcupRest.addActionListener(al);
-		cbPricing.addActionListener(al);
-		cbOver.addActionListener(al);
-		cbRentSeg.addActionListener(al);
-		cbConsSeg.addActionListener(al);
-		cbEstadiaMed.addActionListener(al);
-		cdPreviDem.addActionListener(al);
+		cbPermissoes.addActionListener(al);
+		cbMaquinas.addActionListener(al);		
+		cbIndices.addActionListener(al);		
+		cbBuscarDocumentos.addActionListener(al);		
 
 		// Adicionar botoes ao menu cadastro
-		menuCadastroHoteis
-				.addCommandButton(cbHoteis, RibbonElementPriority.TOP);
-		menuCadastroHoteis.addCommandButton(cbTiposAptos,
-				RibbonElementPriority.TOP);
+		menuCadastroDocumento
+				.addCommandButton(cbOcorrencia, RibbonElementPriority.TOP);
+		menuCadastroDocumento
+				.addCommandButton(cbTiposDocumentos,RibbonElementPriority.TOP);
+		menuCadastroDocumento
+				.addCommandButton(cbIndice,RibbonElementPriority.TOP);
 
 		menuCadastroPessoas.addCommandButton(cbPessoa,
 				RibbonElementPriority.TOP);
-		menuCadastroPessoas.addCommandButton(cbSegMercado,
+		menuCadastroPessoas.addCommandButton(cbPermissoes,
 				RibbonElementPriority.TOP);
 
-		menuCadastroTarifas.addCommandButton(cbTarifas,
-				RibbonElementPriority.TOP);
-		menuCadastroTarifas.addCommandButton(cbClassesTar,
-				RibbonElementPriority.MEDIUM);
-		menuCadastroTarifas.addCommandButton(cbRestricoesTar,
-				RibbonElementPriority.MEDIUM);
-		menuCadastroTarifas.addCommandButton(cbCanais,
-				RibbonElementPriority.MEDIUM);
-		menuCadastroTarifas.addCommandButton(cbDemandas,
-				RibbonElementPriority.MEDIUM);
-		menuCadastroTarifas.addCommandButton(cbOrigem,
-				RibbonElementPriority.MEDIUM);
-		menuCadastroTarifas.addCommandButton(cbTemporadas,
+		menuCadastroEquipamentos.addCommandButton(cbMaquinas,
+				RibbonElementPriority.TOP);		
+		menuCadastroEquipamentos.addCommandButton(cbIndices,
 				RibbonElementPriority.TOP);
 		
 		//Adicionar botoes ao menu an�lise
-		menuAnalise.addCommandButton(cbTempPerm, RibbonElementPriority.TOP);
-		menuAnalise.addCommandButton(cbOcupSeg, RibbonElementPriority.TOP);
-		menuAnalise.addCommandButton(cbOcupRest, RibbonElementPriority.TOP);
-		menuAnalise.addCommandButton(cbPricing, RibbonElementPriority.TOP);
-		menuAnalise.addCommandButton(cbOver, RibbonElementPriority.TOP);
-		menuAnalise.addCommandButton(cbRentSeg, RibbonElementPriority.TOP);
-		menuAnalise.addCommandButton(cbConsSeg, RibbonElementPriority.TOP);
-		menuAnalise.addCommandButton(cbEstadiaMed, RibbonElementPriority.TOP);
-		menuAnalise.addCommandButton(cdPreviDem, RibbonElementPriority.TOP);
+		menuAnalise.addCommandButton(cbBuscarDocumentos, RibbonElementPriority.TOP);
+
 		
 		
-		menuRelatorios.addCommandButton(cbTemp, RibbonElementPriority.TOP);
-		menuParametros.addCommandButton(cbTemp, RibbonElementPriority.TOP);
+		//menuAnalise.addCommandButton(cbTemp, RibbonElementPriority.TOP);
+		//menuParametros.addCommandButton(cbTemp, RibbonElementPriority.TOP);
 		menuAjuda.addCommandButton(cbTemp, RibbonElementPriority.TOP);
 
-		// Defini��o de icones
-		menuCadastroHoteis.setResizePolicies(Arrays
+		// Definição de icones
+		menuCadastroDocumento.setResizePolicies(Arrays
 				.<RibbonBandResizePolicy> asList(
-						new CoreRibbonResizePolicies.Mid2Mid(menuCadastroHoteis
+						new CoreRibbonResizePolicies.Mid2Mid(menuCadastroDocumento
 								.getControlPanel()),
-						new IconRibbonBandResizePolicy(menuCadastroHoteis
+						new IconRibbonBandResizePolicy(menuCadastroDocumento
 								.getControlPanel())));
 
 		menuCadastroPessoas.setResizePolicies(Arrays
@@ -264,47 +203,47 @@ public class PrincipalClienteRibbonUI extends JFrame {
 						new IconRibbonBandResizePolicy(menuCadastroPessoas
 								.getControlPanel())));
 
-		menuCadastroTarifas.setResizePolicies(Arrays
+		menuCadastroEquipamentos.setResizePolicies(Arrays
 				.<RibbonBandResizePolicy> asList(
 						new CoreRibbonResizePolicies.Mid2Mid(
-								menuCadastroTarifas.getControlPanel()),
-						new IconRibbonBandResizePolicy(menuCadastroTarifas
+								menuCadastroEquipamentos.getControlPanel()),
+						new IconRibbonBandResizePolicy(menuCadastroEquipamentos
 								.getControlPanel())));
 
-		menuAnalise.setResizePolicies(Arrays.<RibbonBandResizePolicy> asList(
+		/*menuAnalise.setResizePolicies(Arrays.<RibbonBandResizePolicy> asList(
 				new CoreRibbonResizePolicies.Mid2Mid(menuAnalise
 						.getControlPanel()), new IconRibbonBandResizePolicy(
-						menuAnalise.getControlPanel())));
+						menuAnalise.getControlPanel())));*/
 
-		menuRelatorios.setResizePolicies(Arrays
+		menuAnalise.setResizePolicies(Arrays
 				.<RibbonBandResizePolicy> asList(
-						new CoreRibbonResizePolicies.Mid2Mid(menuRelatorios
+						new CoreRibbonResizePolicies.Mid2Mid(menuAnalise
 								.getControlPanel()),
-						new IconRibbonBandResizePolicy(menuRelatorios
+						new IconRibbonBandResizePolicy(menuAnalise
 								.getControlPanel())));
-		menuParametros.setResizePolicies(Arrays
+		/*menuParametros.setResizePolicies(Arrays
 				.<RibbonBandResizePolicy> asList(
 						new CoreRibbonResizePolicies.Mid2Mid(menuParametros
 								.getControlPanel()),
 						new IconRibbonBandResizePolicy(menuParametros
-								.getControlPanel())));
+								.getControlPanel())));*/
 		menuAjuda.setResizePolicies((List) Arrays.asList(
 				new CoreRibbonResizePolicies.Mid2Mid(menuAjuda
 						.getControlPanel()), new IconRibbonBandResizePolicy(
 						menuAjuda.getControlPanel())));
 
-		tsCadastro = new RibbonTask("Cadastro", menuCadastroHoteis,
-				menuCadastroPessoas, menuCadastroTarifas);
+		tsCadastro = new RibbonTask("Cadastro", menuCadastroDocumento,
+				menuCadastroPessoas, menuCadastroEquipamentos);
 
-		tsAnalise = new RibbonTask("Análises", menuAnalise);
-		tsRelatorios = new RibbonTask("Relatórios", menuRelatorios);
-		tsParametros = new RibbonTask("Parâmetros", menuParametros);
+		//tsAnalise = new RibbonTask("Análises", menuAnalise);
+		tsAnalise = new RibbonTask("Análise", menuAnalise);
+		//tsParametros = new RibbonTask("Parâmetros", menuParametros);
 		tsAjuda = new RibbonTask("Ajuda", menuAjuda);
 
 		menuRibbon.addTask(tsCadastro);
+		//menuRibbon.addTask(tsAnalise);
 		menuRibbon.addTask(tsAnalise);
-		menuRibbon.addTask(tsRelatorios);
-		menuRibbon.addTask(tsParametros);
+		//menuRibbon.addTask(tsParametros);
 		menuRibbon.addTask(tsAjuda);
 
 		return menuRibbon;
@@ -316,7 +255,7 @@ public class PrincipalClienteRibbonUI extends JFrame {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			// create internal frame
-		/*	if (e.getSource().equals(cbPessoa)) {
+			/*if (e.getSource().equals(cbPessoa)) {
 				ManterPessoaUI mpUI = new ManterPessoaUI();
 				try {
 					// mpUI = new ManterPessoaUI(desktop);
@@ -327,7 +266,7 @@ public class PrincipalClienteRibbonUI extends JFrame {
 					e1.printStackTrace();
 				}
 			}
-			if (e.getSource().equals(cbHoteis)) {
+			if (e.getSource().equals(cbOcorrencia)) {
 				ManterEmpresaUI meUI = new ManterEmpresaUI();
 				try {
 					// mpUI = new ManterPessoaUI(desktop);
@@ -338,7 +277,7 @@ public class PrincipalClienteRibbonUI extends JFrame {
 					e1.printStackTrace();
 				}
 			}
-			if (e.getSource().equals(cbTiposAptos)) {
+			if (e.getSource().equals(cbTiposDocumentos)) {
 				ManterTiposApartamentoUI meUI = new ManterTiposApartamentoUI();
 				try {
 					// mpUI = new ManterPessoaUI(desktop);
@@ -349,7 +288,7 @@ public class PrincipalClienteRibbonUI extends JFrame {
 					e1.printStackTrace();
 				}
 			}
-			if (e.getSource().equals(cbSegMercado)) {
+			if (e.getSource().equals(cbPermissoes)) {
 				ManterMercadoUI mmUI = new ManterMercadoUI();
 				try {
 					desktop.add(mmUI.manterBaseUI(desktop));
@@ -359,17 +298,7 @@ public class PrincipalClienteRibbonUI extends JFrame {
 					e1.printStackTrace();
 				}
 			}
-			if (e.getSource().equals(cbDemandas)) {
-				ManterDemandaUI dmUI = new ManterDemandaUI();
-				try {
-					desktop.add(dmUI.manterBaseUI(desktop));
-					dmUI.pack();
-					dmUI.setVisible(true);
-				} catch (RemoteException e1) {
-					e1.printStackTrace();
-				}
-			}
-			if (e.getSource().equals(cbTemporadas)) {
+			if (e.getSource().equals(cbIndices)) {
 				ManterTemporadaUI tmUI = new ManterTemporadaUI();
 				try {
 					desktop.add(tmUI.manterBaseUI(desktop));
@@ -379,78 +308,8 @@ public class PrincipalClienteRibbonUI extends JFrame {
 					e1.printStackTrace();
 				}
 			}
-			if (e.getSource().equals(cbOrigem)) {
-				ManterReceitaUI rmUI = new ManterReceitaUI();
-				try {
-					desktop.add(rmUI.manterBaseUI(desktop));
-					rmUI.pack();
-					rmUI.setVisible(true);
-				} catch (RemoteException e1) {
-					e1.printStackTrace();
-				}
-			}
-			if (e.getSource().equals(cbCanais)) {
-				ManterCanaisUI cmUI = new ManterCanaisUI();
-				try {
-					desktop.add(cmUI.manterBaseUI(desktop));
-					cmUI.pack();
-					cmUI.setVisible(true);
-				} catch (RemoteException e1) {
-					e1.printStackTrace();
-				}
-			}
-			if (e.getSource().equals(cbRestricoesTar)) {
-				ManterRestricoesUI rmUI = new ManterRestricoesUI();
-				try {
-					desktop.add(rmUI.manterBaseUI(desktop));
-					rmUI.pack();
-					rmUI.setVisible(true);
-				} catch (RemoteException e1) {
-					e1.printStackTrace();
-				}
-			}
-			if (e.getSource().equals(cbClassesTar)) {
-				ManterClassesUI cmUI = new ManterClassesUI();
-				try {
-					desktop.add(cmUI.manterBaseUI(desktop));
-					cmUI.pack();
-					cmUI.setVisible(true);
-				} catch (RemoteException e1) {
-					e1.printStackTrace();
-				}
-			}
-			if (e.getSource().equals(cbTarifas)) {
-				ManterTarifaUI cmUI = new ManterTarifaUI();
-				try {
-					desktop.add(cmUI.manterBaseUI(desktop));
-					cmUI.pack();
-					cmUI.setVisible(true);
-				} catch (RemoteException e1) {
-					e1.printStackTrace();
-				}
-			}
-			if (e.getSource().equals(cbTempPerm)) {
+			if (e.getSource().equals(cbIndice)) {
 				TempoDePermanenciaUI cmUI = new TempoDePermanenciaUI();
-				try {
-					desktop.add(cmUI.analiseBaseUI(desktop));
-					cmUI.pack();
-					cmUI.setVisible(true);
-				} catch (RemoteException e1) {
-					e1.printStackTrace();
-				}
-			}
-			if (e.getSource().equals(cbOcupSeg)) {
-				OcupacaoSegUI cmUI = new OcupacaoSegUI();
-				try {
-					desktop.add(cmUI.analiseBaseUI(desktop));
-					cmUI.pack();
-					cmUI.setVisible(true);
-				} catch (RemoteException e1) {
-					e1.printStackTrace();
-				}
-			}
-			if (e.getSource().equals(cbOcupRest)) {
-				OcupacaoRestUI cmUI = new OcupacaoRestUI();
 				try {
 					desktop.add(cmUI.analiseBaseUI(desktop));
 					cmUI.pack();

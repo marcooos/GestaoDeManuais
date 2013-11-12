@@ -16,9 +16,12 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
+import br.com.pcsocial.gestao.controle.ValidarLoginControle;
+import br.com.pcsocial.gestao.util.PropertiesLoaderImpl;
+
 /*import br.com.pcsocial.cliente.ConexaoServidorCliente;
-import br.com.pcsocial.cliente.PessoaCliente;
-import br.com.pcsocial.cliente.util.PropertiesLoaderImpl;*/
+ import br.com.pcsocial.cliente.PessoaCliente;
+ import br.com.pcsocial.cliente.util.PropertiesLoaderImpl;*/
 
 public class ValidarLoginUI {
 	private JLabel lbEmail, lbSenha, lbServidor;
@@ -36,13 +39,12 @@ public class ValidarLoginUI {
 	private Dimension dmsLabel;
 
 	public ValidarLoginUI() {
-		//new ConexaoServidorCliente();
+		// new ConexaoServidorCliente();
 	}
 
 	void createAndShowGUI() {
-		
-		
-		//Instanciar componentes
+
+		// Instanciar componentes
 		dialog = new JFrame();
 		lbEmail = new JLabel("E-mail", SwingConstants.RIGHT);
 		lbSenha = new JLabel("Senha", SwingConstants.RIGHT);
@@ -50,7 +52,7 @@ public class ValidarLoginUI {
 		tfSenha = new JPasswordField();
 		tfEmail = new JTextField();
 		tfServidor = new JTextField();
-		//tfServidor.setText(PropertiesLoaderImpl.getValor("servidor"));
+		// tfServidor.setText(PropertiesLoaderImpl.getValor("servidor"));
 		btnLogar = new JButton("Realizar login");
 		btnSair = new JButton("Cancelar login");
 		imgLogin_user = new JLabel(new ImageIcon(getClass().getResource(
@@ -60,13 +62,12 @@ public class ValidarLoginUI {
 		layout = new BorderLayout();
 		layoutInferior = new FlowLayout();
 		layoutCentral = new FlowLayout();
-		
+
 		dmsLogin = new Dimension(450, 307);
 		dmsEdit = new Dimension(340, 27);
 		dmsLabel = new Dimension(50, 27);
 
-		
-		//Propriedades da Janela
+		// Propriedades da Janela
 		dialog.setUndecorated(false);
 		dialog.setPreferredSize(dmsLogin);
 		dialog.setSize(dmsLogin);
@@ -76,8 +77,8 @@ public class ValidarLoginUI {
 		dialog.setLayout(layout);
 		dialog.setLocationRelativeTo(null);
 		dialog.setResizable(false);
-		
-		//Propriedades componentes
+
+		// Propriedades componentes
 		btnLogar.setIcon(new ImageIcon(getClass().getResource(
 				"/gui/icones/acoes/confirmar.png")));
 		btnSair.setIcon(new ImageIcon(getClass().getResource(
@@ -96,7 +97,7 @@ public class ValidarLoginUI {
 		tfSenha.setPreferredSize(dmsEdit);
 		lbEmail.setPreferredSize(dmsLabel);
 		lbSenha.setPreferredSize(dmsLabel);
-		
+
 		tfServidor.setPreferredSize(dmsEdit);
 
 		// Componentes painel central
@@ -113,46 +114,48 @@ public class ValidarLoginUI {
 		// painelInferior.setAlignmentY(JFrame.RIGHT_ALIGNMENT);
 		painelInferior.add(btnLogar);
 		painelInferior.add(btnSair);
-		
 
 		dialog.add(painelCentral, BorderLayout.CENTER);
 		dialog.add(painelInferior, BorderLayout.SOUTH);
 		dialog.setVisible(true);
 
-		// Eventos bot�es
+		// Eventos botões
 		btnLogar.addActionListener(al);
 		btnSair.addActionListener(al);
 	}
 
 	ActionListener al = new ActionListener() {
+		@SuppressWarnings("deprecation")
 		@Override
-		//@SuppressWarnings("deprecation")
+		// @SuppressWarnings("deprecation")
 		public void actionPerformed(ActionEvent e) {
-			//PropertiesLoaderImpl.setValor("servidor", tfServidor.getText());
-			///ConexaoServidorCliente.setEnderecoServidor(tfServidor.getText());
+			PropertiesLoaderImpl.setValor("servidor", tfServidor.getText());
+			// ConexaoServidorCliente.setEnderecoServidor(tfServidor.getText());
 			if (e.getSource().equals(btnLogar)) {
-				//PessoaCliente pc = new PessoaCliente();
-				//if (//pc.validarLogin(tfEmail.getText(), tfSenha.getText())) {
-					//PrincipalClienteUI pcUI = new PrincipalClienteUI();
-					//PrincipalClienteRibbonUI pcUI = new PrincipalClienteRibbonUI();
-					//pcUI.createAndShowGUI();
-					//dialog.dispose();
+				ValidarLoginControle vLC = new ValidarLoginControle();
+				if (vLC.validarLogin(tfEmail.getText(), tfSenha.getText())) {					
+					PrincipalClienteRibbonUI pcUI = new PrincipalClienteRibbonUI();
+					pcUI.createAndShowGUI();
+					dialog.dispose();
 				} else {
-					JOptionPane.showMessageDialog(null,
-							"E-mail ou senha inválido", null, 0, new ImageIcon(getClass().getResource(
+					JOptionPane.showMessageDialog(
+							null,
+							"E-mail ou senha inválido",
+							null,
+							0,
+							new ImageIcon(getClass().getResource(
 									"/gui/icones/acoes/cancelar.png")));
 				}
-			//}
+			}
 			if (e.getSource().equals(btnSair)) {
-				if (javax.swing.JOptionPane
-						.showConfirmDialog(
-								null,
-								"Deseja cancelar o Login",
-								"Confirme sua operação ",
-								javax.swing.JOptionPane.YES_NO_OPTION,
-								0,
-								new ImageIcon(getClass().getResource(
-										"/gui/icones/acoes/informacao.png"))) == 0) {
+				if (javax.swing.JOptionPane.showConfirmDialog(
+						null,
+						"Deseja cancelar o Login",
+						"Confirme sua operação ",
+						javax.swing.JOptionPane.YES_NO_OPTION,
+						0,
+						new ImageIcon(getClass().getResource(
+								"/gui/icones/acoes/informacao.png"))) == 0) {
 					System.exit(0);
 				}
 			}
