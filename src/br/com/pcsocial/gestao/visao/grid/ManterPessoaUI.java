@@ -1,30 +1,30 @@
 package br.com.pcsocial.gestao.visao.grid;
 
 import java.awt.Color;
-import java.rmi.RemoteException;
+
 
 import javax.swing.ImageIcon;
 import javax.swing.JTable;
 import javax.swing.table.TableColumn;
 
-import br.com.pcsocial.cliente.PessoaCliente;
-import br.com.pcsocial.cliente.util.DadosPesquisaGrid;
-import br.com.pcsocial.cliente.visao.base.ManterBaseUI;
-import br.com.pcsocial.cliente.visao.manter.AdicionarPessoaUI;
-import br.com.pcsocial.servidor.modelo.Pessoa;
+import br.com.pcsocial.gestao.util.DadosPesquisaGrid;
+import br.com.pcsocial.gestao.visao.base.ManterBaseUI;
+import br.com.pcsocial.gestao.visao.manter.AdicionarPessoaUI;
+import br.com.pcsocial.gestao.controle.PessoaControler;
+import br.com.pcsocial.gestao.modelo.Pessoa;
 
 public class ManterPessoaUI extends ManterBaseUI {
 
 	private static final long serialVersionUID = 1L;
 
 	private JTable gridPessoas;
-	private PessoaCliente pC;
+	private PessoaControler pC;
 	private Pessoa pessoa;
 	private AdicionarPessoaUI adicionarPessoaUI;
 
 	@Override
 	public void atualizarGrid() {
-		pC = new PessoaCliente();
+		pC = new PessoaControler();
 		DadosPesquisaGrid dp = new DadosPesquisaGrid();
 		try {
 			int tmCol1 = 40;
@@ -36,18 +36,15 @@ public class ManterPessoaUI extends ManterBaseUI {
 			TableColumn col1 = gridPessoas.getColumnModel().getColumn(0);
 			TableColumn col2 = gridPessoas.getColumnModel().getColumn(1);
 			TableColumn col3 = gridPessoas.getColumnModel().getColumn(2);
-			TableColumn col4 = gridPessoas.getColumnModel().getColumn(3);
-			TableColumn col5 = gridPessoas.getColumnModel().getColumn(4);
+			TableColumn col4 = gridPessoas.getColumnModel().getColumn(3);			
 			col1.setPreferredWidth(tmCol1);
 			col2.setPreferredWidth(tmColOu);
 			col3.setPreferredWidth(tmColOu);
-			col4.setPreferredWidth(tmColOu);
-			col5.setPreferredWidth(tmColOu);
+			col4.setPreferredWidth(tmColOu);			
 			gridPessoas.setFillsViewportHeight(true);
 			gridPessoas.setGridColor(new Color(160, 160, 160));
 			super.getScrollPane().setViewportView(gridPessoas);
-		} catch (RemoteException e1) {
-			// TODO Auto-generated catch block
+		} catch (Exception e1) {			
 			e1.printStackTrace();
 		}
 	}

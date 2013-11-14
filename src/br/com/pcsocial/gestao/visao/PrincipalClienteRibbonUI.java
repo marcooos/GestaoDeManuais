@@ -14,6 +14,8 @@ import java.util.List;
 
 import javax.swing.ImageIcon;
 import br.com.pcsocial.gestao.util.DecoratedDesktopPane;
+import br.com.pcsocial.gestao.visao.grid.ManterPessoaUI;
+
 import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
@@ -137,8 +139,8 @@ public class PrincipalClienteRibbonUI extends JFrame {
 				"Origem de receitas hospedagens",
 				getResizableIconFromResource("/gui/icones/menu/receitas.png"));*/
 		cbIndices = new JCommandButton(
-				"Temporadas",
-				getResizableIconFromResource("/gui/icones/barras/temporadas.png"));
+				"Indices",
+				getResizableIconFromResource("/gui/icones/barras/rentabilidade.png"));
 		
 		cbIndice = new JCommandButton(
 				"Indices",
@@ -255,18 +257,18 @@ public class PrincipalClienteRibbonUI extends JFrame {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			// create internal frame
-			/*if (e.getSource().equals(cbPessoa)) {
+			if (e.getSource().equals(cbPessoa)) {
 				ManterPessoaUI mpUI = new ManterPessoaUI();
 				try {
 					// mpUI = new ManterPessoaUI(desktop);
 					desktop.add(mpUI.manterBaseUI(desktop));
 					mpUI.pack();
 					mpUI.setVisible(true);
-				} catch (RemoteException e1) {
+				} catch (Exception e1) {
 					e1.printStackTrace();
 				}
 			}
-			if (e.getSource().equals(cbOcorrencia)) {
+			/*if (e.getSource().equals(cbOcorrencia)) {
 				ManterEmpresaUI meUI = new ManterEmpresaUI();
 				try {
 					// mpUI = new ManterPessoaUI(desktop);
