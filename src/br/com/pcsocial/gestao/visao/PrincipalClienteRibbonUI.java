@@ -14,6 +14,7 @@ import java.util.List;
 
 import javax.swing.ImageIcon;
 import br.com.pcsocial.gestao.util.DecoratedDesktopPane;
+import br.com.pcsocial.gestao.visao.grid.ManterMaquinaUI;
 import br.com.pcsocial.gestao.visao.grid.ManterPessoaUI;
 
 import javax.swing.JFrame;
@@ -38,7 +39,7 @@ public class PrincipalClienteRibbonUI extends JFrame {
 	private static final long serialVersionUID = 1L;
 	private DecoratedDesktopPane desktop;
 	private JCommandButton cbOcorrencia, cbTiposDocumentos, cbPessoa, cbPermissoes,
-			cbMaquinas,cbIndices,cbIndice, cbBuscarDocumentos, cbTemp; 
+			cbMaquinas,cbIndice, cbBuscarDocumentos, cbTemp; 
 			/*cbClassesTar, cbRestricoesTar, cbCanais, cbDemandas,
 			cbOrigem, cbIndice, cbOcupSeg, cbPricing,
 			cbOcupRest, cbOver, cbRentSeg, cbConsSeg, cbEstadiaMed, cdPreviDem;*/
@@ -47,9 +48,9 @@ public class PrincipalClienteRibbonUI extends JFrame {
 			menuCadastroPessoas, menuAnalise, 
 			//menuAnalise, menuParametros,
 			menuAjuda;
-	private RibbonTask tsCadastro, tsAnalise, 
+	private RibbonTask tsCadastro, tsAnalise; 
 			//tsAnalise, tsParametros,
-			tsAjuda;
+			//tsAjuda;
 	private JMenuBar menu;
 	private JMenuItem menuItem;
 
@@ -106,6 +107,7 @@ public class PrincipalClienteRibbonUI extends JFrame {
 		menuAnalise = new JRibbonBand("Falhas", null);
 		//menuParametros = new JRibbonBand("", null);
 		menuAjuda = new JRibbonBand("", null);
+		
 
 		// Botoes menu cadastro
 		cbOcorrencia = new JCommandButton(
@@ -115,36 +117,18 @@ public class PrincipalClienteRibbonUI extends JFrame {
 				"Documentos",
 				getResizableIconFromResource("/gui/icones/barras/demandas.png"));
 		cbPessoa = new JCommandButton(
-				"Pessoas",
+				"Usuários",
 				getResizableIconFromResource("/gui/icones/barras/pessoas.png"));
 		cbPermissoes = new JCommandButton(
 				"Permissões",
 				getResizableIconFromResource("/gui/icones/barras/restricoes.png"));
 		cbMaquinas = new JCommandButton(
 				"Maquinas",
-				getResizableIconFromResource("/gui/icones/barras/over.png"));
-		/*cbClassesTar = new JCommandButton(
-				"Clas. de tarifas",
-				getResizableIconFromResource("/gui/icones/menu/classes.png"));
-		cbRestricoesTar = new JCommandButton(
-				"Rest. de tarifas",
-				getResizableIconFromResource("/gui/icones/menu/restricoes.png"));
-		cbCanais = new JCommandButton(
-				"Canais de distribuição",
-				getResizableIconFromResource("/gui/icones/menu/canais.png"));
-		cbDemandas = new JCommandButton(
-				"Demandas flutuantes",
-				getResizableIconFromResource("/gui/icones/menu/demandas.png"));
-		cbOrigem = new JCommandButton(
-				"Origem de receitas hospedagens",
-				getResizableIconFromResource("/gui/icones/menu/receitas.png"));*/
-		cbIndices = new JCommandButton(
-				"Indices",
-				getResizableIconFromResource("/gui/icones/barras/rentabilidade.png"));
+				getResizableIconFromResource("/gui/icones/barras/over.png"));		
 		
 		cbIndice = new JCommandButton(
 				"Indices",
-				getResizableIconFromResource("/gui/icones/barras/tempoPerm.png"));
+				getResizableIconFromResource("/gui/icones/barras/rentabilidade.png"));
 		
 		// Temp
 		cbTemp = new JCommandButton("Temp");
@@ -160,28 +144,23 @@ public class PrincipalClienteRibbonUI extends JFrame {
 		cbPessoa.addActionListener(al);
 		cbPermissoes.addActionListener(al);
 		cbMaquinas.addActionListener(al);		
-		cbIndices.addActionListener(al);		
+		cbIndice.addActionListener(al);		
 		cbBuscarDocumentos.addActionListener(al);		
 
 		// Adicionar botoes ao menu cadastro
-		menuCadastroDocumento
-				.addCommandButton(cbOcorrencia, RibbonElementPriority.TOP);
-		menuCadastroDocumento
-				.addCommandButton(cbTiposDocumentos,RibbonElementPriority.TOP);
-		menuCadastroDocumento
-				.addCommandButton(cbIndice,RibbonElementPriority.TOP);
-
-		menuCadastroPessoas.addCommandButton(cbPessoa,
-				RibbonElementPriority.TOP);
-		menuCadastroPessoas.addCommandButton(cbPermissoes,
-				RibbonElementPriority.TOP);
-
-		menuCadastroEquipamentos.addCommandButton(cbMaquinas,
-				RibbonElementPriority.TOP);		
-		menuCadastroEquipamentos.addCommandButton(cbIndices,
-				RibbonElementPriority.TOP);
+		menuCadastroDocumento.addCommandButton(cbOcorrencia, RibbonElementPriority.TOP);
+		menuCadastroDocumento.addCommandButton(cbTiposDocumentos,RibbonElementPriority.TOP);
+		menuCadastroDocumento.addCommandButton(cbIndice,RibbonElementPriority.TOP);
 		
-		//Adicionar botoes ao menu an�lise
+		// Adicionar botoes ao menu pessoas
+		menuCadastroPessoas.addCommandButton(cbPessoa, RibbonElementPriority.TOP);
+		menuCadastroPessoas.addCommandButton(cbPermissoes, RibbonElementPriority.TOP);
+
+		// Adicionar botoes ao menu equipamentos
+		menuCadastroEquipamentos.addCommandButton(cbMaquinas, RibbonElementPriority.TOP);
+		menuCadastroEquipamentos.addCommandButton(cbTemp, RibbonElementPriority.TOP);
+		
+		//Adicionar botoes ao menu análise
 		menuAnalise.addCommandButton(cbBuscarDocumentos, RibbonElementPriority.TOP);
 
 		
@@ -212,23 +191,13 @@ public class PrincipalClienteRibbonUI extends JFrame {
 						new IconRibbonBandResizePolicy(menuCadastroEquipamentos
 								.getControlPanel())));
 
-		/*menuAnalise.setResizePolicies(Arrays.<RibbonBandResizePolicy> asList(
-				new CoreRibbonResizePolicies.Mid2Mid(menuAnalise
-						.getControlPanel()), new IconRibbonBandResizePolicy(
-						menuAnalise.getControlPanel())));*/
-
 		menuAnalise.setResizePolicies(Arrays
 				.<RibbonBandResizePolicy> asList(
 						new CoreRibbonResizePolicies.Mid2Mid(menuAnalise
 								.getControlPanel()),
 						new IconRibbonBandResizePolicy(menuAnalise
 								.getControlPanel())));
-		/*menuParametros.setResizePolicies(Arrays
-				.<RibbonBandResizePolicy> asList(
-						new CoreRibbonResizePolicies.Mid2Mid(menuParametros
-								.getControlPanel()),
-						new IconRibbonBandResizePolicy(menuParametros
-								.getControlPanel())));*/
+		
 		menuAjuda.setResizePolicies((List) Arrays.asList(
 				new CoreRibbonResizePolicies.Mid2Mid(menuAjuda
 						.getControlPanel()), new IconRibbonBandResizePolicy(
@@ -240,13 +209,13 @@ public class PrincipalClienteRibbonUI extends JFrame {
 		//tsAnalise = new RibbonTask("Análises", menuAnalise);
 		tsAnalise = new RibbonTask("Análise", menuAnalise);
 		//tsParametros = new RibbonTask("Parâmetros", menuParametros);
-		tsAjuda = new RibbonTask("Ajuda", menuAjuda);
+		//tsAjuda = new RibbonTask("Ajuda", menuAjuda);
 
 		menuRibbon.addTask(tsCadastro);
 		//menuRibbon.addTask(tsAnalise);
 		menuRibbon.addTask(tsAnalise);
 		//menuRibbon.addTask(tsParametros);
-		menuRibbon.addTask(tsAjuda);
+		//menuRibbon.addTask(tsAjuda);
 
 		return menuRibbon;
 
@@ -268,18 +237,18 @@ public class PrincipalClienteRibbonUI extends JFrame {
 					e1.printStackTrace();
 				}
 			}
-			/*if (e.getSource().equals(cbOcorrencia)) {
-				ManterEmpresaUI meUI = new ManterEmpresaUI();
+			if (e.getSource().equals(cbMaquinas)) {
+				ManterMaquinaUI meUI = new ManterMaquinaUI();
 				try {
 					// mpUI = new ManterPessoaUI(desktop);
 					desktop.add(meUI.manterBaseUI(desktop));
 					meUI.pack();
 					meUI.setVisible(true);
-				} catch (RemoteException e1) {
+				} catch (Exception e1) {
 					e1.printStackTrace();
 				}
 			}
-			if (e.getSource().equals(cbTiposDocumentos)) {
+			/*if (e.getSource().equals(cbTiposDocumentos)) {
 				ManterTiposApartamentoUI meUI = new ManterTiposApartamentoUI();
 				try {
 					// mpUI = new ManterPessoaUI(desktop);
