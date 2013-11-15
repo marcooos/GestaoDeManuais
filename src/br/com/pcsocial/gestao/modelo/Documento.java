@@ -1,20 +1,15 @@
 package br.com.pcsocial.gestao.modelo;
 
 import java.io.Serializable;
-import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Lob;
-import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
-
-import org.hibernate.annotations.Fetch;
-import org.hibernate.annotations.FetchMode;
-
 
 import com.towel.el.annotation.Resolvable;
 
@@ -35,15 +30,14 @@ public class Documento implements Serializable {
 	private long id;
 	@Column(nullable = false)
 	@Resolvable(colName = "Documento")
-	private String documento;	
+	private String documento;
+	@OneToOne
+	private Maquina maquina;
 	@Lob
-	@Column(columnDefinition="LONGBLOB")
+	@Column(columnDefinition = "LONGBLOB")
 	@Resolvable(colName = "anexo")
-	private byte[] anexo;
-	@ManyToMany(mappedBy="documento",fetch=FetchType.EAGER)
-	@Fetch(FetchMode.JOIN)
-	private List<Maquina> maquina;
-	
+	private byte[] anexo;	
+
 	public Documento() {
 
 	}
@@ -72,16 +66,16 @@ public class Documento implements Serializable {
 		this.anexo = anexo;
 	}
 
-	public List<Maquina> getMaquina() {
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+
+	public Maquina getMaquina() {
 		return maquina;
 	}
 
-	public void setMaquina(List<Maquina> maquina) {
+	public void setMaquina(Maquina maquina) {
 		this.maquina = maquina;
-	}
-
-	public static long getSerialversionuid() {
-		return serialVersionUID;
 	}
 
 }

@@ -14,6 +14,7 @@ import java.util.List;
 
 import javax.swing.ImageIcon;
 import br.com.pcsocial.gestao.util.DecoratedDesktopPane;
+import br.com.pcsocial.gestao.visao.grid.ManterDocumentoUI;
 import br.com.pcsocial.gestao.visao.grid.ManterMaquinaUI;
 import br.com.pcsocial.gestao.visao.grid.ManterPessoaUI;
 
@@ -38,7 +39,7 @@ import org.pushingpixels.flamingo.api.ribbon.resize.RibbonBandResizePolicy;
 public class PrincipalClienteRibbonUI extends JFrame {
 	private static final long serialVersionUID = 1L;
 	private DecoratedDesktopPane desktop;
-	private JCommandButton cbOcorrencia, cbTiposDocumentos, cbPessoa, cbPermissoes,
+	private JCommandButton cbOcorrencia, cbDocumentos, cbPessoa, cbPermissoes,
 			cbMaquinas,cbIndice, cbBuscarDocumentos, cbTemp; 
 			/*cbClassesTar, cbRestricoesTar, cbCanais, cbDemandas,
 			cbOrigem, cbIndice, cbOcupSeg, cbPricing,
@@ -113,7 +114,7 @@ public class PrincipalClienteRibbonUI extends JFrame {
 		cbOcorrencia = new JCommandButton(
 				"Ocorrências",
 				getResizableIconFromResource("/gui/icones/barras/mercado.png"));
-		cbTiposDocumentos = new JCommandButton(
+		cbDocumentos = new JCommandButton(
 				"Documentos",
 				getResizableIconFromResource("/gui/icones/barras/demandas.png"));
 		cbPessoa = new JCommandButton(
@@ -140,7 +141,7 @@ public class PrincipalClienteRibbonUI extends JFrame {
 		
 		// Eventos botoes
 		cbOcorrencia.addActionListener(al);
-		cbTiposDocumentos.addActionListener(al);
+		cbDocumentos.addActionListener(al);
 		cbPessoa.addActionListener(al);
 		cbPermissoes.addActionListener(al);
 		cbMaquinas.addActionListener(al);		
@@ -149,7 +150,7 @@ public class PrincipalClienteRibbonUI extends JFrame {
 
 		// Adicionar botoes ao menu cadastro
 		menuCadastroDocumento.addCommandButton(cbOcorrencia, RibbonElementPriority.TOP);
-		menuCadastroDocumento.addCommandButton(cbTiposDocumentos,RibbonElementPriority.TOP);
+		menuCadastroDocumento.addCommandButton(cbDocumentos,RibbonElementPriority.TOP);
 		menuCadastroDocumento.addCommandButton(cbIndice,RibbonElementPriority.TOP);
 		
 		// Adicionar botoes ao menu pessoas
@@ -248,18 +249,18 @@ public class PrincipalClienteRibbonUI extends JFrame {
 					e1.printStackTrace();
 				}
 			}
-			/*if (e.getSource().equals(cbTiposDocumentos)) {
-				ManterTiposApartamentoUI meUI = new ManterTiposApartamentoUI();
+			if (e.getSource().equals(cbDocumentos)) {
+				ManterDocumentoUI mdUI = new ManterDocumentoUI();
 				try {
 					// mpUI = new ManterPessoaUI(desktop);
-					desktop.add(meUI.manterBaseUI(desktop));
-					meUI.pack();
-					meUI.setVisible(true);
-				} catch (RemoteException e1) {
+					desktop.add(mdUI.manterBaseUI(desktop));
+					mdUI.pack();
+					mdUI.setVisible(true);
+				} catch (Exception e1) {
 					e1.printStackTrace();
 				}
 			}
-			if (e.getSource().equals(cbPermissoes)) {
+			/*if (e.getSource().equals(cbPermissoes)) {
 				ManterMercadoUI mmUI = new ManterMercadoUI();
 				try {
 					desktop.add(mmUI.manterBaseUI(desktop));

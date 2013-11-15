@@ -8,7 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.Fetch;
@@ -38,7 +38,7 @@ public class Maquina implements Serializable {
 	@Column(nullable = false)
 	@Resolvable(colName = "Modelo")
 	private String modelo;
-	@ManyToMany(fetch=FetchType.EAGER)
+	@OneToMany(fetch=FetchType.EAGER)
 	@Fetch(FetchMode.JOIN)
 	private List<Documento> documento;
 

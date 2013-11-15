@@ -167,7 +167,6 @@ public class AdicionarMaquinaUI  extends JDialog {
 	//
 	ActionListener al = new ActionListener() {
 		@Override
-		@SuppressWarnings("deprecation")
 		public void actionPerformed(ActionEvent e) {
 			if (e.getSource().equals(btnConfirmar)) {
 				MaquinaControler pc = new MaquinaControler();
