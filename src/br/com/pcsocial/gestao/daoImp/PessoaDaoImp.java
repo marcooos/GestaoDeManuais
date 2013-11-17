@@ -20,15 +20,15 @@ public class PessoaDaoImp extends DaoBaseImp{
 		return pessoa;
 	}
 	
-	public boolean validarLogin(String email, String senha) {
-        boolean retorno;
+	public Pessoa validarLogin(String email, String senha) {
+        Pessoa pessoa = new Pessoa();
         Session session = HibernateUtil.getSessionFactory().openSession();
         Query q = session.createQuery("from Pessoa where email = :email and senha = :senha");
         q.setString("email", email);
         q.setString("senha", senha);
-        retorno = q.list().isEmpty();
+        pessoa = (Pessoa) q.list().get(0);
         try {
-            return retorno;
+            return pessoa;
         } finally {
             session.close();
         }
@@ -66,5 +66,18 @@ public class PessoaDaoImp extends DaoBaseImp{
         }
 		return null;
 	}
+	
+	public boolean validarLogin(String email) {
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        Query q = session.createQuery("from Pessoa where email = :email");
+        q.setString("email", email);        
+        try {
+        	if (q.list().isEmpty()) {
+        		return false;
+        	} else return true;            
+        } finally {
+            session.close();
+        }
+    }
 
 }

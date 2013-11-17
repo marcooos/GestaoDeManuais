@@ -68,4 +68,10 @@ public class PessoaControler {
 		pessoa.remove(pessoa.getById(id));
 		return true;
 	}
+	
+	public boolean consultarPessoaEmail(String email){
+		if (pessoa.validarLogin(email)){
+			return true;
+		} else return false;
+	}
 }

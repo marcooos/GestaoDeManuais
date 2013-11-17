@@ -192,35 +192,45 @@ public class AdicionarPessoaUI extends JDialog {
 				pessoa.setEmail(tfEmail.getText());
 				pessoa.setSenha(pSenha.getText());
 
-				if (janelaAtiva == 0) {
-					if (pc.adicionarPessoa(pessoa)) {
-						javax.swing.JOptionPane.showMessageDialog(
-								null,
-								"Cadastro realizado com sucesso",
-								"Informação",
-								0,
-								new ImageIcon(getClass().getResource(
-										"/gui/icones/acoes/informacao.png")));
-						pessoa = null;
-						tfNomeRazaoSocial.setText(null);
-						tfSobreNomeFantasia.setText(null);
-						tfEmail.setText(null);
-						pSenha.setText(null);
+				if (pc.consultarPessoaEmail(tfEmail.getText())){
+					javax.swing.JOptionPane.showMessageDialog(
+							null,
+							"E-mail já cadastrado",
+							"Informação",
+							0,
+							new ImageIcon(getClass().getResource(
+									"/gui/icones/acoes/informacao.png")));
+				} else {
+					if (janelaAtiva == 0) {
+						if (pc.adicionarPessoa(pessoa)) {
+							javax.swing.JOptionPane.showMessageDialog(
+									null,
+									"Cadastro realizado com sucesso",
+									"Informação",
+									0,
+									new ImageIcon(getClass().getResource(
+											"/gui/icones/acoes/informacao.png")));
+							pessoa = null;
+							tfNomeRazaoSocial.setText(null);
+							tfSobreNomeFantasia.setText(null);
+							tfEmail.setText(null);
+							pSenha.setText(null);
+						}
 					}
-				}
-				if (janelaAtiva == 1) {
-					if (pc.alterarPessoa(pessoa)) {
-						javax.swing.JOptionPane.showMessageDialog(
-								null,
-								"Cadastro alterado com sucesso",
-								"Informação",
-								0,
-								new ImageIcon(getClass().getResource(
-										"/gui/icones/acoes/informacao.png")));
-					}
+					if (janelaAtiva == 1) {
+						if (pc.alterarPessoa(pessoa)) {
+							javax.swing.JOptionPane.showMessageDialog(
+									null,
+									"Cadastro alterado com sucesso",
+									"Informação",
+									0,
+									new ImageIcon(getClass().getResource(
+											"/gui/icones/acoes/informacao.png")));
+						}
 
+					}
 				}
-			}
+	}
 			if (e.getSource().equals(btnCancelar)) {
 				if (javax.swing.JOptionPane
 						.showConfirmDialog(

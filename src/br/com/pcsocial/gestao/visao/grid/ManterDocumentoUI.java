@@ -33,9 +33,11 @@ public class ManterDocumentoUI  extends ManterBaseUI {
 					dp.valorPesquisa(super.getDadosPesquisa().getText()))));
 			gridDocumentos.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 			TableColumn col1 = gridDocumentos.getColumnModel().getColumn(0);
-			TableColumn col2 = gridDocumentos.getColumnModel().getColumn(1);						
+			TableColumn col2 = gridDocumentos.getColumnModel().getColumn(1);
+			TableColumn col3 = gridDocumentos.getColumnModel().getColumn(2);
 			col1.setPreferredWidth(tdCol1);
-			col2.setPreferredWidth(tdColOu);			
+			col2.setPreferredWidth(tdColOu);
+			col3.setPreferredWidth(tdColOu);			
 			gridDocumentos.setFillsViewportHeight(true);
 			gridDocumentos.setGridColor(new Color(160, 160, 160));
 			super.getScrollPane().setViewportView(gridDocumentos);

@@ -15,7 +15,9 @@ import java.util.List;
 import javax.swing.ImageIcon;
 import br.com.pcsocial.gestao.util.DecoratedDesktopPane;
 import br.com.pcsocial.gestao.visao.grid.ManterDocumentoUI;
+import br.com.pcsocial.gestao.visao.grid.ManterIndicesUI;
 import br.com.pcsocial.gestao.visao.grid.ManterMaquinaUI;
+import br.com.pcsocial.gestao.visao.grid.ManterOcorrenciaUI;
 import br.com.pcsocial.gestao.visao.grid.ManterPessoaUI;
 
 import javax.swing.JFrame;
@@ -260,27 +262,27 @@ public class PrincipalClienteRibbonUI extends JFrame {
 					e1.printStackTrace();
 				}
 			}
-			/*if (e.getSource().equals(cbPermissoes)) {
-				ManterMercadoUI mmUI = new ManterMercadoUI();
-				try {
-					desktop.add(mmUI.manterBaseUI(desktop));
-					mmUI.pack();
-					mmUI.setVisible(true);
-				} catch (RemoteException e1) {
-					e1.printStackTrace();
-				}
-			}
-			if (e.getSource().equals(cbIndices)) {
-				ManterTemporadaUI tmUI = new ManterTemporadaUI();
-				try {
-					desktop.add(tmUI.manterBaseUI(desktop));
-					tmUI.pack();
-					tmUI.setVisible(true);
-				} catch (RemoteException e1) {
-					e1.printStackTrace();
-				}
-			}
 			if (e.getSource().equals(cbIndice)) {
+				ManterIndicesUI miUI = new ManterIndicesUI();
+				try {
+					desktop.add(miUI.manterBaseUI(desktop));
+					miUI.pack();
+					miUI.setVisible(true);
+				} catch (Exception e1) {
+					e1.printStackTrace();
+				}
+			}
+			if (e.getSource().equals(cbOcorrencia)) {
+				ManterOcorrenciaUI moUI = new ManterOcorrenciaUI();
+				try {
+					desktop.add(moUI.manterBaseUI(desktop));
+					moUI.pack();
+					moUI.setVisible(true);
+				} catch (Exception e1) {
+					e1.printStackTrace();
+				}
+			}			
+			/*if (e.getSource().equals(cbIndice)) {
 				TempoDePermanenciaUI cmUI = new TempoDePermanenciaUI();
 				try {
 					desktop.add(cmUI.analiseBaseUI(desktop));

@@ -7,7 +7,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Lob;
-import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -36,7 +35,9 @@ public class Documento implements Serializable {
 	@Lob
 	@Column(columnDefinition = "LONGBLOB")
 	@Resolvable(colName = "anexo")
-	private byte[] anexo;	
+	private byte[] anexo;
+	@Resolvable(colName="Arquivo")
+	private String arquivo;
 
 	public Documento() {
 
@@ -76,6 +77,14 @@ public class Documento implements Serializable {
 
 	public void setMaquina(Maquina maquina) {
 		this.maquina = maquina;
+	}
+
+	public String getArquivo() {
+		return arquivo;
+	}
+
+	public void setArquivo(String arquivo) {
+		this.arquivo = arquivo;
 	}
 
 }

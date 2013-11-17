@@ -30,8 +30,19 @@ public class Ocorrencia {
 	private String descricao;
 	@OneToOne
 	private Indices indices;
+	@Resolvable(colName = "Data")
 	@Temporal(javax.persistence.TemporalType.DATE)
     private Date dataOperacao = new Date(System.currentTimeMillis());
+	@OneToOne
+	private Pessoa pessoa;
+
+	public Pessoa getPessoa() {
+		return pessoa;
+	}
+
+	public void setPessoa(Pessoa pessoa) {
+		this.pessoa = pessoa;
+	}
 
 	public long getId() {
 		return id;

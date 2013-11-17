@@ -24,10 +24,14 @@ public class Indices {
 	private long id;
 	@Column(nullable = false)
 	@Resolvable(colName = "Indice")
-	private String indice;
+	private String indice;	
 	@OneToOne
-	private Documento documento;
+	private Documento documento;	
 	
+	
+	public Indices () {
+	}
+
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}

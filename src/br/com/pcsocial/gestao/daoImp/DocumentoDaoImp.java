@@ -51,5 +51,19 @@ public class DocumentoDaoImp extends DaoBaseImp {
         }
 		return null;
 	}
+	
+	public boolean validaDocumentoCadastrado(String nomeArquivo){
+		Session session = HibernateUtil.getSessionFactory().openSession();
+		Query q = session.createQuery("from Documento where arquivo like :text ");
+        q.setString("text", '%' + nomeArquivo.toLowerCase() + '%');
+        if (q.list().isEmpty()) {
+        	session.close();
+        	return true;
+        } else {
+        	session.close();
+        	return false;        	
+        }
+                
+	}
 
 }

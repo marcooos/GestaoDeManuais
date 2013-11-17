@@ -6,10 +6,6 @@ import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.InputStream;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -21,6 +17,7 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.WindowConstants;
 
+import br.com.pcsocial.gestao.util.Conversores;
 import br.com.pcsocial.gestao.visao.consulta.ListaDeMaquinasUI;
 import br.com.pcsocial.gestao.controle.DocumentoControler;
 import br.com.pcsocial.gestao.modelo.Documento;
@@ -44,7 +41,9 @@ public class AdicionarDocumentoUI extends JDialog {
 	private Maquina maquina;
 	private byte janelaAtiva;
 	private ListaDeMaquinasUI listaDeMaquinasUI;
-	private byte[] bytes;	
+	private byte[] bytes;
+	private Conversores conversores;
+	private String nomeArquivo;
 
 	public AdicionarDocumentoUI() {
 
@@ -69,6 +68,11 @@ public class AdicionarDocumentoUI extends JDialog {
 		DocumentoControler pc = new DocumentoControler();
 		documento = pc.buscarDocumentoId(id);
 		maquina = documento.getMaquina();
+		try {
+			bytes = documento.getAnexo();
+		} catch (NullPointerException e) {
+			bytes = null;
+		}
 
 		// Criar interface
 		janelaAtiva = 1;
@@ -115,15 +119,18 @@ public class AdicionarDocumentoUI extends JDialog {
 		tfMaquina.setEditable(false);
 
 		// Atribuir campos a documento
-		if (janelaAtiva == 1) {			
+		if (janelaAtiva == 1) {
+			conversores = new Conversores();
 			tfDocumento.setText(documento.getDocumento());
-			tfAnexo.setText(documento.getAnexo().toString());
 			try {
 				tfMaquina
 						.setText(maquina.getNome() + "/" + maquina.getModelo());
+				tfAnexo.setText(conversores.convertByteToFile(
+						documento.getAnexo(), documento.getArquivo()).getName());
 
 			} catch (NullPointerException e) {
 				tfMaquina.setText("");
+				tfAnexo.setText("");
 			}
 		}
 
@@ -206,34 +213,58 @@ public class AdicionarDocumentoUI extends JDialog {
 				DocumentoControler pc = new DocumentoControler();
 				documento.setDocumento(tfDocumento.getText());
 				documento.setMaquina(maquina);
-				documento.setAnexo(bytes);				
+				documento.setArquivo(tfAnexo.getText());
+				documento.setAnexo(bytes);
 
-				if (janelaAtiva == 0) {
-					if (pc.adicionarDocumento(documento)) {
-						javax.swing.JOptionPane.showMessageDialog(
-								null,
-								"Cadastro realizado com sucesso",
-								"Informação",
-								0,
-								new ImageIcon(getClass().getResource(
-										"/gui/icones/acoes/informacao.png")));
-						documento = null;
-						tfDocumento.setText(null);
-						tfAnexo.setText(null);
+				if (!pc.validaDocumentoCadastrado(nomeArquivo)) {
+					javax.swing.JOptionPane.showMessageDialog(
+							null,
+							"Documento já cadastrado",
+							"Informação",
+							0,
+							new ImageIcon(getClass().getResource(
+									"/gui/icones/acoes/informacao.png")));
+
+				} else {
+					if (janelaAtiva == 0) {
+						if (pc.adicionarDocumento(documento)) {
+							javax.swing.JOptionPane
+									.showMessageDialog(
+											null,
+											"Cadastro realizado com sucesso",
+											"Informação",
+											0,
+											new ImageIcon(
+													getClass()
+															.getResource(
+																	"/gui/icones/acoes/informacao.png")));
+							documento = null;
+							maquina = null;
+							bytes = null;
+							tfDocumento.setText(null);
+							tfAnexo.setText(null);
+							tfMaquina.setText(null);
+							documento = new Documento();
+						}
 					}
-				}
-				if (janelaAtiva == 1) {
-					if (pc.alterarDocumento(documento)) {
-						javax.swing.JOptionPane.showMessageDialog(
-								null,
-								"Cadastro alterado com sucesso",
-								"Informação",
-								0,
-								new ImageIcon(getClass().getResource(
-										"/gui/icones/acoes/informacao.png")));
+					if (janelaAtiva == 1) {
+						if (pc.alterarDocumento(documento)) {
+							javax.swing.JOptionPane
+									.showMessageDialog(
+											null,
+											"Cadastro alterado com sucesso",
+											"Informação",
+											0,
+											new ImageIcon(
+													getClass()
+															.getResource(
+																	"/gui/icones/acoes/informacao.png")));
+						}
+
 					}
 
 				}
+
 			}
 			if (e.getSource().equals(btnCancelar)) {
 				if (javax.swing.JOptionPane
@@ -251,43 +282,33 @@ public class AdicionarDocumentoUI extends JDialog {
 			}
 			if (e.getSource().equals(btnBuscarMaquina)) {
 				listaDeMaquinasUI = new ListaDeMaquinasUI();
-				maquina = (Maquina) listaDeMaquinasUI.createAndShowUI();				
-				tfMaquina.setText(maquina.getNome() + "/" + maquina.getModelo());
+				maquina = (Maquina) listaDeMaquinasUI.createAndShowUI();
+				tfMaquina
+						.setText(maquina.getNome() + "/" + maquina.getModelo());
 			}
 			if (e.getSource().equals(btnBuscarAnexo)) {
 				JFileChooser arquivo = new JFileChooser();
 				arquivo.setDialogTitle("Selecione o arquivo desejado");
 				arquivo.setFileSelectionMode(JFileChooser.FILES_ONLY);
-				arquivo.setFileFilter(new javax.swing.filechooser.FileFilter(){
-				      public boolean accept(File f){
-				          return f.getName().toLowerCase().endsWith(".pdf") || f.isDirectory();
-				        }
+				arquivo.setFileFilter(new javax.swing.filechooser.FileFilter() {
+					public boolean accept(File f) {
+						return f.getName().toLowerCase().endsWith(".pdf")
+								|| f.isDirectory();
+					}
 
-				        public String getDescription() {
-				          return "Arquivos pdf (.pdf)";
-				        }
-				      });
+					public String getDescription() {
+						return "Arquivos pdf (.pdf)";
+					}
+				});
 				arquivo.showOpenDialog(rootPane);
 
 				// converte o objeto file em array de bytes
-				try {										
-					InputStream is = new FileInputStream(arquivo.getSelectedFile());
-					bytes = new byte[(int) arquivo.getSelectedFile().length()];
-					int offset = 0;
-					int numRead = 0;
-					while (offset < bytes.length
-							&& (numRead = is.read(bytes, offset, bytes.length
-									- offset)) >= 0) {
-						offset += numRead;
-					}					
-					is.close();
-				} catch (FileNotFoundException e2) {
-					e2.printStackTrace();
-				} catch (IOException e1) {
-					e1.printStackTrace();
-				}
+				conversores = new Conversores();
+				bytes = conversores
+						.convertFileToByte(arquivo.getSelectedFile());
+				nomeArquivo = arquivo.getSelectedFile().getName();
 				try {
-					tfAnexo.setText(arquivo.getSelectedFile().getName());
+					tfAnexo.setText(nomeArquivo);
 				} catch (java.lang.NullPointerException e1) {
 					tfAnexo.setText("");
 				}
