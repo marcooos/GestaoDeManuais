@@ -14,7 +14,7 @@ import br.com.pcsocial.gestao.visao.base.ManterBaseUI;
 import br.com.pcsocial.gestao.visao.consulta.PDFViewer;
 import br.com.pcsocial.gestao.visao.manter.AdicionarIndicesUI;
 
-public class ManterIndicesUI extends ManterBaseUI{
+public class ManterBuscarDocumentosUI extends ManterBaseUI{
 
 	private static final long serialVersionUID = 1L;
 
@@ -22,8 +22,8 @@ public class ManterIndicesUI extends ManterBaseUI{
 	private IndicesControler mC;
 	private Indices indices;
 	private AdicionarIndicesUI adicionarIndicesUI;
+		
 	
-
 	@Override
 	public void atualizarGrid() {
 		mC = new IndicesControler();
@@ -106,7 +106,7 @@ public class ManterIndicesUI extends ManterBaseUI{
 							"/gui/icones/acoes/informacao.png")));
 		}
 	}
-	
+		
 	public void abrirDocumento() {
 		PDFViewer am = new PDFViewer(closable);
 		File file = new File("OS_Arg_2010.pdf");
@@ -127,5 +127,6 @@ public class ManterIndicesUI extends ManterBaseUI{
 							"/gui/icones/acoes/informacao.png")));
 		}*/
 	}
+		
 
 }

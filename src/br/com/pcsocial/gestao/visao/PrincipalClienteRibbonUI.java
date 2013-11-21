@@ -14,6 +14,7 @@ import java.util.List;
 
 import javax.swing.ImageIcon;
 import br.com.pcsocial.gestao.util.DecoratedDesktopPane;
+import br.com.pcsocial.gestao.visao.grid.ManterBuscarDocumentosUI;
 import br.com.pcsocial.gestao.visao.grid.ManterDocumentoUI;
 import br.com.pcsocial.gestao.visao.grid.ManterIndicesUI;
 import br.com.pcsocial.gestao.visao.grid.ManterMaquinaUI;
@@ -234,7 +235,7 @@ public class PrincipalClienteRibbonUI extends JFrame {
 				ManterPessoaUI mpUI = new ManterPessoaUI();
 				try {
 					// mpUI = new ManterPessoaUI(desktop);
-					desktop.add(mpUI.manterBaseUI(desktop));
+					desktop.add(mpUI.manterBaseUI(desktop,false));
 					mpUI.pack();
 					mpUI.setVisible(true);
 				} catch (Exception e1) {
@@ -245,7 +246,7 @@ public class PrincipalClienteRibbonUI extends JFrame {
 				ManterMaquinaUI meUI = new ManterMaquinaUI();
 				try {
 					// mpUI = new ManterPessoaUI(desktop);
-					desktop.add(meUI.manterBaseUI(desktop));
+					desktop.add(meUI.manterBaseUI(desktop,false));
 					meUI.pack();
 					meUI.setVisible(true);
 				} catch (Exception e1) {
@@ -256,7 +257,7 @@ public class PrincipalClienteRibbonUI extends JFrame {
 				ManterDocumentoUI mdUI = new ManterDocumentoUI();
 				try {
 					// mpUI = new ManterPessoaUI(desktop);
-					desktop.add(mdUI.manterBaseUI(desktop));
+					desktop.add(mdUI.manterBaseUI(desktop,false));
 					mdUI.pack();
 					mdUI.setVisible(true);
 				} catch (Exception e1) {
@@ -266,7 +267,7 @@ public class PrincipalClienteRibbonUI extends JFrame {
 			if (e.getSource().equals(cbIndice)) {
 				ManterIndicesUI miUI = new ManterIndicesUI();
 				try {
-					desktop.add(miUI.manterBaseUI(desktop));
+					desktop.add(miUI.manterBaseUI(desktop,false));
 					miUI.pack();
 					miUI.setVisible(true);
 				} catch (Exception e1) {
@@ -276,23 +277,23 @@ public class PrincipalClienteRibbonUI extends JFrame {
 			if (e.getSource().equals(cbOcorrencia)) {
 				ManterOcorrenciaUI moUI = new ManterOcorrenciaUI();
 				try {
-					desktop.add(moUI.manterBaseUI(desktop));
+					desktop.add(moUI.manterBaseUI(desktop,false));
 					moUI.pack();
 					moUI.setVisible(true);
 				} catch (Exception e1) {
 					e1.printStackTrace();
 				}
 			}			
-			/*if (e.getSource().equals(cbIndice)) {
-				TempoDePermanenciaUI cmUI = new TempoDePermanenciaUI();
+			if (e.getSource().equals(cbBuscarDocumentos)) {
+				ManterBuscarDocumentosUI cmUI = new ManterBuscarDocumentosUI();
 				try {
-					desktop.add(cmUI.analiseBaseUI(desktop));
+					desktop.add(cmUI.manterBaseUI(desktop,true));
 					cmUI.pack();
 					cmUI.setVisible(true);
-				} catch (RemoteException e1) {
+				} catch (Exception e1) {
 					e1.printStackTrace();
 				}
-			}*/
+			}
 			if ("sair".equals(e.getActionCommand())) {
 				System.exit(0);
 			}

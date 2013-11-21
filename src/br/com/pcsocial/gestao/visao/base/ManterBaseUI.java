@@ -39,7 +39,7 @@ public class ManterBaseUI extends JInternalFrame {
 		super.setTitle(getTituloJanela());
 	}
 
-	public JInternalFrame manterBaseUI(JDesktopPane father)
+	public JInternalFrame manterBaseUI(JDesktopPane father, boolean visivel)
 			throws RemoteException {
 
 		// Propriedades da Janela
@@ -64,6 +64,15 @@ public class ManterBaseUI extends JInternalFrame {
 		cbCancelar = new JButton("Cancelar");
 		cbPesquisa = new JButton("Pesquisar");
 		cbAbrirDocumento = new JButton("Visualizar");
+		if(visivel) {
+			cbAbrirDocumento.setVisible(true);
+			cbCancelar.setVisible(true);
+			cbAdicionar.setVisible(false);			
+			cbModificar.setVisible(false);
+			cbExcluir.setVisible(false);
+			cbPesquisa.setVisible(true);
+		}
+		
 		dadosPesquisa = new JTextField();
 		scrollPane = new JScrollPane();
 
@@ -167,7 +176,7 @@ public class ManterBaseUI extends JInternalFrame {
 			}
 			if (e.getSource().equals(cbAbrirDocumento)) {
 				abrirDocumento();
-				//atualizarGrid();
+				atualizarGrid();
 			}
 		}
 	};
@@ -207,6 +216,10 @@ public class ManterBaseUI extends JInternalFrame {
 
 	public void setScrollPane(JScrollPane scrollPane) {
 		this.scrollPane = scrollPane;
+	}
+	
+	public void setBotaoVisivel(boolean visivel) {
+		cbAbrirDocumento.setVisible(visivel);
 	}
 
 }

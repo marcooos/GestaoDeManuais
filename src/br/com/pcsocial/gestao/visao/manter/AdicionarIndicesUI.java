@@ -30,14 +30,13 @@ public class AdicionarIndicesUI extends JDialog {
 	private BorderLayout layout;
 	private FlowLayout layoutInfBotoes;
 	private FlowLayout layoutCentral;
-	private JLabel lbIndices, lbDocumento;
-	private JTextField tfIndices, tfDocumento;
+	private JLabel lbIndices, lbDocumento, lbDescricao, lbPagina;
+	private JTextField tfIndices, tfDocumento, tfDescricao, tfPagina;
 	private Dimension dmsEdit, dmsEditDois, dmsLabelDois, dmsBotao;
 	private Indices indices;
 	private Documento documento;
 	private byte janelaAtiva;
 	private ListaDeDocumentosUI listaDeDocumentosUI;
-	private JButton cbAbrirDocumento;
 
 	public AdicionarIndicesUI() {
 
@@ -95,10 +94,18 @@ public class AdicionarIndicesUI extends JDialog {
 		lbIndices.setPreferredSize(dmsLabelDois);
 		lbDocumento = new JLabel("Documento", SwingConstants.RIGHT);
 		lbDocumento.setPreferredSize(dmsLabelDois);
+		lbDescricao = new JLabel("Descrição", SwingConstants.RIGHT);
+		lbDescricao.setPreferredSize(dmsLabelDois);
+		lbPagina = new JLabel("Pagina", SwingConstants.RIGHT);
+		lbPagina.setPreferredSize(dmsLabelDois);
 
 		// Editores
 		tfIndices = new JTextField();
 		tfIndices.setPreferredSize(dmsEdit);
+		tfDescricao = new JTextField();
+		tfDescricao.setPreferredSize(dmsEdit);
+		tfPagina = new JTextField();
+		tfPagina.setPreferredSize(dmsEdit);
 		tfDocumento = new JTextField();
 		tfDocumento.setPreferredSize(dmsEditDois);
 		tfDocumento.setEditable(false);
@@ -106,6 +113,8 @@ public class AdicionarIndicesUI extends JDialog {
 		// Atribuir campos a indices
 		if (janelaAtiva == 1) {
 			tfIndices.setText(indices.getIndice());
+			tfDescricao.setText(indices.getDescricao());
+			tfPagina.setText(indices.getPaginaStr());
 			try {
 				tfDocumento.setText(documento.getDocumento() + "/"
 						+ documento.getArquivo());
@@ -155,6 +164,10 @@ public class AdicionarIndicesUI extends JDialog {
 		// Adicionar componentes ao painel central
 		panelCentral.add(lbIndices);
 		panelCentral.add(tfIndices);
+		panelCentral.add(lbDescricao);
+		panelCentral.add(tfDescricao);
+		panelCentral.add(lbPagina);
+		panelCentral.add(tfPagina);
 		panelCentral.add(lbDocumento);
 		panelCentral.add(tfDocumento);
 		panelCentral.add(btnBuscarDocumento);
@@ -184,6 +197,8 @@ public class AdicionarIndicesUI extends JDialog {
 			if (e.getSource().equals(btnConfirmar)) {
 				IndicesControler pc = new IndicesControler();
 				indices.setIndice(tfIndices.getText());
+				indices.setDescricao(tfDescricao.getText());
+				indices.setPaginaStr(tfPagina.getText());
 				indices.setDocumento(documento);
 
 				/*
@@ -207,7 +222,9 @@ public class AdicionarIndicesUI extends JDialog {
 						indices = null;
 						documento = null;
 						tfIndices.setText(null);
+						tfDescricao.setText(null);
 						tfDocumento.setText(null);
+						tfPagina.setText(null);
 						indices = new Indices();
 					}
 				}

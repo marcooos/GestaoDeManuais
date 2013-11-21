@@ -27,6 +27,7 @@ public class Indices {
 	private String indice;
 	@Resolvable(colName = "Descricao")
 	private String descricao;
+	private int pagina;
 	
 	@OneToOne
 	private Documento documento;	
@@ -69,6 +70,22 @@ public class Indices {
 
 	public void setDescricao(String descricao) {
 		this.descricao = descricao;
+	}
+
+	public int getPagina() {
+		return pagina;
+	}
+	
+	public String getPaginaStr() {
+		return String.valueOf(pagina);
+	}
+
+	public void setPagina(int pagina) {
+		this.pagina = pagina;
+	}
+	
+	public void setPaginaStr(String pagina) {
+		this.pagina = Integer.parseInt(pagina);
 	}
 	
 }

@@ -33,7 +33,6 @@ import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JDialog;
-import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
@@ -131,37 +130,62 @@ public class PDFViewer extends JFrame
     /// FILE MENU
     Action openAction = new AbstractAction("Open...") {
 
-        public void actionPerformed(ActionEvent evt) {
+        /**
+		 * 
+		 */
+		private static final long serialVersionUID = 1L;
+
+		public void actionPerformed(ActionEvent evt) {
             //doOpen();
         }
     };
     Action pageSetupAction = new AbstractAction("Page setup...") {
-
+    	/**
+		 * 
+		 */
+		private static final long serialVersionUID = 1L;
+		
         public void actionPerformed(ActionEvent evt) {
             doPageSetup();
         }
     };
     Action printAction = new AbstractAction("Print...", new ImageIcon(getClass().getResource("/gui/gfx/print.gif"))) {
-
+    	/**
+		 * 
+		 */
+		private static final long serialVersionUID = 1L;
+		
         public void actionPerformed(ActionEvent evt) {
             doPrint();
         }
     };
     Action closeAction = new AbstractAction("Close") {
-
+    	/**
+		 * 
+		 */
+		private static final long serialVersionUID = 1L;
+		
         public void actionPerformed(ActionEvent evt) {
             doClose();
         }
     };
     Action quitAction = new AbstractAction("Quit") {
-
+    	/**
+		 * 
+		 */
+		private static final long serialVersionUID = 1L;
+		
         public void actionPerformed(ActionEvent evt) {
             doQuit();
         }
     };
 
     class ZoomAction extends AbstractAction {
-
+    	/**
+		 * 
+		 */
+		private static final long serialVersionUID = 1L;
+		
         double zoomfactor = 1.0;
 
         public ZoomAction(String name, double factor) {
@@ -184,12 +208,14 @@ public class PDFViewer extends JFrame
     ZoomAction zoomOutAction = new ZoomAction("Zoom out",
     		new ImageIcon(getClass().getResource("/gui/gfx/zoomout.gif")),
             0.5);
-    Action zoomToolAction = new AbstractAction("", new ImageIcon(getClass().getResource("/gui/gfx/zoom.gif"))) {
+    @SuppressWarnings("serial")
+	Action zoomToolAction = new AbstractAction("", new ImageIcon(getClass().getResource("/gui/gfx/zoom.gif"))) {
 
         public void actionPerformed(ActionEvent evt) {
             doZoomTool();
         }
     };
+    @SuppressWarnings("serial")
     Action fitInWindowAction = new AbstractAction("Fit in window",
             new ImageIcon(getClass().getResource("/gui/gfx/fit.gif"))) {
 
@@ -201,7 +227,11 @@ public class PDFViewer extends JFrame
     class ThumbAction extends AbstractAction
             implements PropertyChangeListener {
 
-        boolean isOpen = true;
+        /**
+		 * 
+		 */
+		private static final long serialVersionUID = 1L;
+		boolean isOpen = true;
 
         public ThumbAction() {
             super("Hide thumbnails");
@@ -386,6 +416,7 @@ public class PDFViewer extends JFrame
         setEnabling();
         pack();
         setExtendedState(JFrame.MAXIMIZED_BOTH);
+        setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
         Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
         int x = (screen.width - getWidth()) / 2;
         int y = (screen.height - getHeight()) / 2;
@@ -859,7 +890,7 @@ public class PDFViewer extends JFrame
         //        }
         doClose();
         dispose();
-        System.exit(0);
+        //System.exit(0);
     }
 
     /**
@@ -1004,8 +1035,8 @@ public class PDFViewer extends JFrame
 
     //public static void main(String args[]) {
     public void iniciarInterface(File file, int pagina) {
-        String fileName = file.getName();
-        boolean useThumbs = true;
+        //String fileName = file.getName();
+        //boolean useThumbs = true;
 
         /*for (int i = 0; i < args.length; i++) {
             if (args[i].equalsIgnoreCase("-noThumb")) {
@@ -1022,9 +1053,9 @@ public class PDFViewer extends JFrame
         }*/
         // start the viewer
 
-        PDFViewer viewer;
-        viewer = new PDFViewer(useThumbs);
-        viewer.doOpen(fileName,pagina);
+        //PDFViewer viewer;
+        //viewer = new PDFViewer(useThumbs);
+        //viewer.doOpen(fileName,pagina);
         try {
 			openFile(file,pagina);
 		} catch (IOException e) {
