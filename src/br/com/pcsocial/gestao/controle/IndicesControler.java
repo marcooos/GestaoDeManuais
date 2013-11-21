@@ -21,7 +21,7 @@ private IndicesDaoImp indices;
 			// We use the resolver as parameter to the ObjectTableModel
 			// and the String represent the cols.
 			ObjectTableModel<Indices> tableModel = new ObjectTableModel<Indices>(
-					resolver, "id,indice,documento.documento,documento.arquivo");
+					resolver, "id,indice,descricao,documento.arquivo");
 
 			// Here we use the list to be the data of the table.
 			// System.out.println(indices.list(text,valor).toString());

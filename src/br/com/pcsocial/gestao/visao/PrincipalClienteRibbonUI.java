@@ -95,6 +95,7 @@ public class PrincipalClienteRibbonUI extends JFrame {
 		this.pack();
 		this.setSize(screenMax);
 		this.setLocationRelativeTo(null);
+		this.setExtendedState(JFrame.MAXIMIZED_BOTH);
 		desktop.setBackground(Color.WHITE);
 	}
 

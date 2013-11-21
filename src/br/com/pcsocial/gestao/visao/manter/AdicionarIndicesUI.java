@@ -37,6 +37,7 @@ public class AdicionarIndicesUI extends JDialog {
 	private Documento documento;
 	private byte janelaAtiva;
 	private ListaDeDocumentosUI listaDeDocumentosUI;
+	private JButton cbAbrirDocumento;
 
 	public AdicionarIndicesUI() {
 
@@ -185,51 +186,44 @@ public class AdicionarIndicesUI extends JDialog {
 				indices.setIndice(tfIndices.getText());
 				indices.setDocumento(documento);
 
-				if (!pc.validaIndiceCadastrado(tfIndices.getText())) {
-					javax.swing.JOptionPane.showMessageDialog(
-							null,
-							"Indice já cadastrado",
-							"Informação",
-							0,
-							new ImageIcon(getClass().getResource(
-									"/gui/icones/acoes/informacao.png")));
-
-				} else {
-					if (janelaAtiva == 0) {
-						if (pc.adicionarIndices(indices)) {
-							javax.swing.JOptionPane
-									.showMessageDialog(
-											null,
-											"Cadastro realizado com sucesso",
-											"Informação",
-											0,
-											new ImageIcon(
-													getClass()
-															.getResource(
-																	"/gui/icones/acoes/informacao.png")));
-							indices = null;
-							documento = null;
-							tfIndices.setText(null);
-							tfDocumento.setText(null);
-							indices = new Indices();
-						}
-					}
-					if (janelaAtiva == 1) {
-						if (pc.alterarIndices(indices)) {
-							javax.swing.JOptionPane
-									.showMessageDialog(
-											null,
-											"Cadastro alterado com sucesso",
-											"Informação",
-											0,
-											new ImageIcon(
-													getClass()
-															.getResource(
-																	"/gui/icones/acoes/informacao.png")));
-						}
-
+				/*
+				 * if (!pc.validaIndiceCadastrado(tfIndices.getText())) {
+				 * javax.swing.JOptionPane.showMessageDialog( null,
+				 * "Indice já cadastrado", "Informação", 0, new
+				 * ImageIcon(getClass().getResource(
+				 * "/gui/icones/acoes/informacao.png")));
+				 * 
+				 * } else {
+				 */
+				if (janelaAtiva == 0) {
+					if (pc.adicionarIndices(indices)) {
+						javax.swing.JOptionPane.showMessageDialog(
+								null,
+								"Cadastro realizado com sucesso",
+								"Informação",
+								0,
+								new ImageIcon(getClass().getResource(
+										"/gui/icones/acoes/informacao.png")));
+						indices = null;
+						documento = null;
+						tfIndices.setText(null);
+						tfDocumento.setText(null);
+						indices = new Indices();
 					}
 				}
+				if (janelaAtiva == 1) {
+					if (pc.alterarIndices(indices)) {
+						javax.swing.JOptionPane.showMessageDialog(
+								null,
+								"Cadastro alterado com sucesso",
+								"Informação",
+								0,
+								new ImageIcon(getClass().getResource(
+										"/gui/icones/acoes/informacao.png")));
+					}
+
+				}
+				// }
 			}
 			if (e.getSource().equals(btnCancelar)) {
 				if (javax.swing.JOptionPane

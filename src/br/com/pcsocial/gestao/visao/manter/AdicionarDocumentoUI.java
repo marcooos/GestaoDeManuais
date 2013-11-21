@@ -125,8 +125,7 @@ public class AdicionarDocumentoUI extends JDialog {
 			try {
 				tfMaquina
 						.setText(maquina.getNome() + "/" + maquina.getModelo());
-				tfAnexo.setText(conversores.convertByteToFile(
-						documento.getAnexo(), documento.getArquivo()).getName());
+				tfAnexo.setText(documento.getArquivo());
 
 			} catch (NullPointerException e) {
 				tfMaquina.setText("");
@@ -215,18 +214,19 @@ public class AdicionarDocumentoUI extends JDialog {
 				documento.setMaquina(maquina);
 				documento.setArquivo(tfAnexo.getText());
 				documento.setAnexo(bytes);
+				nomeArquivo = tfAnexo.getText();
 
-				if (!pc.validaDocumentoCadastrado(nomeArquivo)) {
-					javax.swing.JOptionPane.showMessageDialog(
-							null,
-							"Documento já cadastrado",
-							"Informação",
-							0,
-							new ImageIcon(getClass().getResource(
-									"/gui/icones/acoes/informacao.png")));
+				if (janelaAtiva == 0) {
+					if (!pc.validaDocumentoCadastrado(nomeArquivo)) {
+						javax.swing.JOptionPane.showMessageDialog(
+								null,
+								"Documento já cadastrado",
+								"Informação",
+								0,
+								new ImageIcon(getClass().getResource(
+										"/gui/icones/acoes/informacao.png")));
 
-				} else {
-					if (janelaAtiva == 0) {
+					} else {
 						if (pc.adicionarDocumento(documento)) {
 							javax.swing.JOptionPane
 									.showMessageDialog(
@@ -247,20 +247,16 @@ public class AdicionarDocumentoUI extends JDialog {
 							documento = new Documento();
 						}
 					}
-					if (janelaAtiva == 1) {
-						if (pc.alterarDocumento(documento)) {
-							javax.swing.JOptionPane
-									.showMessageDialog(
-											null,
-											"Cadastro alterado com sucesso",
-											"Informação",
-											0,
-											new ImageIcon(
-													getClass()
-															.getResource(
-																	"/gui/icones/acoes/informacao.png")));
-						}
-
+				}
+				if (janelaAtiva == 1) {
+					if (pc.alterarDocumento(documento)) {
+						javax.swing.JOptionPane.showMessageDialog(
+								null,
+								"Cadastro alterado com sucesso",
+								"Informação",
+								0,
+								new ImageIcon(getClass().getResource(
+										"/gui/icones/acoes/informacao.png")));
 					}
 
 				}

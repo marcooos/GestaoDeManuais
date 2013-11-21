@@ -24,7 +24,10 @@ public class Indices {
 	private long id;
 	@Column(nullable = false)
 	@Resolvable(colName = "Indice")
-	private String indice;	
+	private String indice;
+	@Resolvable(colName = "Descricao")
+	private String descricao;
+	
 	@OneToOne
 	private Documento documento;	
 	
@@ -58,6 +61,14 @@ public class Indices {
 
 	public void setDocumento(Documento documento) {
 		this.documento = documento;
+	}
+
+	public String getDescricao() {
+		return descricao;
+	}
+
+	public void setDescricao(String descricao) {
+		this.descricao = descricao;
 	}
 	
 }

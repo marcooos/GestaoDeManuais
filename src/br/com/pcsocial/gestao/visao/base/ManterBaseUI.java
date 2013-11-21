@@ -30,6 +30,7 @@ public class ManterBaseUI extends JInternalFrame {
 	private JButton cbExcluir;
 	private JButton cbCancelar;
 	private JButton cbPesquisa;
+	private JButton cbAbrirDocumento;
 	private JTextField dadosPesquisa;
 	private JScrollPane scrollPane;
 
@@ -62,38 +63,46 @@ public class ManterBaseUI extends JInternalFrame {
 		cbExcluir = new JButton("Excluir");
 		cbCancelar = new JButton("Cancelar");
 		cbPesquisa = new JButton("Pesquisar");
+		cbAbrirDocumento = new JButton("Visualizar");
 		dadosPesquisa = new JTextField();
 		scrollPane = new JScrollPane();
 
 		// Propriedades botoes
-		cbAdicionar.setIcon(new ImageIcon(
-				getClass().getResource("/gui/icones/acoes/adicionar.png")));
+		cbAdicionar.setIcon(new ImageIcon(getClass().getResource(
+				"/gui/icones/acoes/adicionar.png")));
 		// cbAdicionar.setVerticalTextPosition(JButton.BOTTOM);
 		// cbAdicionar.setHorizontalTextPosition(JButton.CENTER);
 		cbAdicionar.addActionListener(al);
 
-		cbModificar.setIcon(new ImageIcon(
-				getClass().getResource("/gui/icones/acoes/alterar.png")));
+		cbModificar.setIcon(new ImageIcon(getClass().getResource(
+				"/gui/icones/acoes/alterar.png")));
 		// cbModificar.setVerticalTextPosition(JButton.BOTTOM);
 		// cbModificar.setHorizontalTextPosition(JButton.CENTER);
 		cbModificar.addActionListener(al);
 
-		cbExcluir
-				.setIcon(new ImageIcon(getClass().getResource("/gui/icones/acoes/excluir.png")));
+		cbExcluir.setIcon(new ImageIcon(getClass().getResource(
+				"/gui/icones/acoes/excluir.png")));
 		// cbExcluir.setVerticalTextPosition(JButton.BOTTOM);
 		// cbExcluir.setHorizontalTextPosition(JButton.CENTER);
 		cbExcluir.addActionListener(al);
 
-		cbCancelar.setIcon(new ImageIcon(
-				getClass().getResource("/gui/icones/acoes/cancelar.png")));
+		cbCancelar.setIcon(new ImageIcon(getClass().getResource(
+				"/gui/icones/acoes/cancelar.png")));
 		// cbCancelar.setVerticalTextPosition(JButton.BOTTOM);
 		// cbCancelar.setHorizontalTextPosition(JButton.CENTER);
 		cbCancelar.addActionListener(al);
 
-		cbPesquisa.setIcon(new ImageIcon(
-				getClass().getResource("/gui/icones/acoes/pesquisa.png")));
+		cbPesquisa.setIcon(new ImageIcon(getClass().getResource(
+				"/gui/icones/acoes/pesquisa.png")));
 		// cbPesquisa.setHorizontalTextPosition(JButton.RIGHT);
 		cbPesquisa.addActionListener(al);
+
+		cbAbrirDocumento.setIcon(new ImageIcon(getClass().getResource(
+				"/gui/icones/acoes/alterar.png")));
+		// cbModificar.setVerticalTextPosition(JButton.BOTTOM);
+		// cbModificar.setHorizontalTextPosition(JButton.CENTER);
+		cbAbrirDocumento.addActionListener(al);
+		
 
 		panel.setLayout(layout);
 		panelSuperior.setLayout(layoutSup);
@@ -109,6 +118,7 @@ public class ManterBaseUI extends JInternalFrame {
 		panelInferior.add(cbModificar);
 		panelInferior.add(cbExcluir);
 		panelInferior.add(cbCancelar);
+		panelInferior.add(cbAbrirDocumento);
 
 		panel.add(scrollPane, BorderLayout.CENTER);
 		panel.add(panelSuperior, BorderLayout.NORTH);
@@ -140,10 +150,14 @@ public class ManterBaseUI extends JInternalFrame {
 				dispose();
 			}
 			if (e.getSource().equals(cbExcluir)) {
-				if (javax.swing.JOptionPane.showConfirmDialog(null,
-						"Deseja excluir o cadastro?", "Confirme sua operação ",
-						javax.swing.JOptionPane.YES_NO_OPTION, 0,
-						new ImageIcon(getClass().getResource("/gui/icones/acoes/alerta.png"))) == 0) {
+				if (javax.swing.JOptionPane.showConfirmDialog(
+						null,
+						"Deseja excluir o cadastro?",
+						"Confirme sua operação ",
+						javax.swing.JOptionPane.YES_NO_OPTION,
+						0,
+						new ImageIcon(getClass().getResource(
+								"/gui/icones/acoes/alerta.png"))) == 0) {
 					excluirCadastro();
 					atualizarGrid();
 				}
@@ -151,24 +165,32 @@ public class ManterBaseUI extends JInternalFrame {
 			if (e.getSource().equals(cbPesquisa)) {
 				atualizarGrid();
 			}
+			if (e.getSource().equals(cbAbrirDocumento)) {
+				abrirDocumento();
+				//atualizarGrid();
+			}
 		}
 	};
 
+	public void abrirDocumento() {
+
+	}
+
 	public String getTituloJanela() {
-		String titulo = "Cadastro base"; 
+		String titulo = "Cadastro base";
 		return titulo;
 	}
 
 	public void adicionarCadastro() {
-		//TODO
+		// TODO
 	}
 
 	public void excluirCadastro() {
-		//TODO
+		// TODO
 	}
 
 	public void modificarCadastro() {
-		//TODO
+		// TODO
 	}
 
 	public JTextField getDadosPesquisa() {

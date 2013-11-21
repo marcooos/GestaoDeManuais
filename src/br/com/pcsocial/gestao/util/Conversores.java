@@ -37,7 +37,7 @@ public class Conversores {
 		try {
 			fileOuputStream = new FileOutputStream(file);
 			fileOuputStream.write(bytes);
-		    fileOuputStream.close();
+		    fileOuputStream.close();		    
 		} catch (FileNotFoundException e) {			
 			e.printStackTrace();
 		} catch (IOException e1) {

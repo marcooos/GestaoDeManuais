@@ -1,6 +1,8 @@
 package br.com.pcsocial.gestao.visao.grid;
 
 import java.awt.Color;
+import java.io.File;
+import java.io.IOException;
 
 import javax.swing.ImageIcon;
 import javax.swing.JTable;
@@ -10,6 +12,8 @@ import br.com.pcsocial.gestao.controle.IndicesControler;
 import br.com.pcsocial.gestao.modelo.Indices;
 import br.com.pcsocial.gestao.util.DadosPesquisaGrid;
 import br.com.pcsocial.gestao.visao.base.ManterBaseUI;
+import br.com.pcsocial.gestao.visao.consulta.PDFViewer;
+import br.com.pcsocial.gestao.visao.consulta.VisualizarPDFUI;
 import br.com.pcsocial.gestao.visao.manter.AdicionarIndicesUI;
 
 public class ManterIndicesUI extends ManterBaseUI{
@@ -20,6 +24,7 @@ public class ManterIndicesUI extends ManterBaseUI{
 	private IndicesControler mC;
 	private Indices indices;
 	private AdicionarIndicesUI adicionarIndicesUI;
+	
 
 	@Override
 	public void atualizarGrid() {
@@ -102,6 +107,27 @@ public class ManterIndicesUI extends ManterBaseUI{
 					new ImageIcon(getClass().getResource(
 							"/gui/icones/acoes/informacao.png")));
 		}
+	}
+	
+	public void abrirDocumento() {
+		PDFViewer am = new PDFViewer(closable);
+		File file = new File("OS_Arg_2010.pdf");
+			am.iniciarInterface(file,3);
+		/*
+		Long retornoSel;
+		try {
+			retornoSel = (Long) gridIndices.getValueAt(
+					gridIndices.getSelectedRow(), 0);
+			am.abrirArquivo(retornoSel);
+		} catch (NullPointerException e1) {
+			javax.swing.JOptionPane.showMessageDialog(
+					null,
+					"Selecione um registro para edição",
+					"Informação",
+					0,
+					new ImageIcon(getClass().getResource(
+							"/gui/icones/acoes/informacao.png")));
+		}*/
 	}
 
 }
