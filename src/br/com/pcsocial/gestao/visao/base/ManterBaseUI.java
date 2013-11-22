@@ -64,6 +64,7 @@ public class ManterBaseUI extends JInternalFrame {
 		cbCancelar = new JButton("Cancelar");
 		cbPesquisa = new JButton("Pesquisar");
 		cbAbrirDocumento = new JButton("Visualizar");
+		cbAbrirDocumento.setVisible(false);
 		if(visivel) {
 			cbAbrirDocumento.setVisible(true);
 			cbCancelar.setVisible(true);

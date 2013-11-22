@@ -1,7 +1,6 @@
 package br.com.pcsocial.gestao.visao.grid;
 
 import java.awt.Color;
-import java.io.File;
 
 import javax.swing.ImageIcon;
 import javax.swing.JTable;
@@ -14,7 +13,7 @@ import br.com.pcsocial.gestao.visao.base.ManterBaseUI;
 import br.com.pcsocial.gestao.visao.consulta.PDFViewer;
 import br.com.pcsocial.gestao.visao.manter.AdicionarIndicesUI;
 
-public class ManterBuscarDocumentosUI extends ManterBaseUI{
+public class ManterBuscarDocumentosUI extends ManterBaseUI {
 
 	private static final long serialVersionUID = 1L;
 
@@ -22,8 +21,7 @@ public class ManterBuscarDocumentosUI extends ManterBaseUI{
 	private IndicesControler mC;
 	private Indices indices;
 	private AdicionarIndicesUI adicionarIndicesUI;
-		
-	
+
 	@Override
 	public void atualizarGrid() {
 		mC = new IndicesControler();
@@ -69,7 +67,7 @@ public class ManterBuscarDocumentosUI extends ManterBaseUI{
 
 	@Override
 	public String getTituloJanela() {
-		String titulo = "Cadastro de indicess";
+		String titulo = "Bucar documentos";
 		return titulo;
 	}
 
@@ -106,27 +104,23 @@ public class ManterBuscarDocumentosUI extends ManterBaseUI{
 							"/gui/icones/acoes/informacao.png")));
 		}
 	}
-		
+
 	public void abrirDocumento() {
-		PDFViewer am = new PDFViewer(closable);
-		File file = new File("OS_Arg_2010.pdf");
-			am.iniciarInterface(file,3);
-		/*
 		Long retornoSel;
 		try {
+			PDFViewer am = new PDFViewer(closable);
 			retornoSel = (Long) gridIndices.getValueAt(
 					gridIndices.getSelectedRow(), 0);
-			am.abrirArquivo(retornoSel);
+			am.iniciarInterface(retornoSel);
 		} catch (NullPointerException e1) {
 			javax.swing.JOptionPane.showMessageDialog(
 					null,
-					"Selecione um registro para edição",
+					"Selecione um registro para Visualização",
 					"Informação",
 					0,
 					new ImageIcon(getClass().getResource(
 							"/gui/icones/acoes/informacao.png")));
-		}*/
+		}
 	}
-		
 
 }
